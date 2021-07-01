@@ -173,6 +173,12 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unityfx.async": {
+      "version": "file:C:/Users/kouro/Downloads/Compressed/UnityFx.Async-master/UnityFx.Async-master/unity/Npm/Assets/Plugins/UnityFx.Async",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
