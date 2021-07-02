@@ -31,7 +31,7 @@ namespace WildWind.Combat
         public override void Update()
         {
 
-
+            base.Update();
 
         }
 

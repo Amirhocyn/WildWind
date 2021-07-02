@@ -37,6 +37,7 @@ namespace WildWind.Systems
         public override void Start()
         {
 
+            base.Start();
             PlayerController.OnStartStatic += StartTimer;
             PlayerController.OnDeathStatic += ResetScore;
             PlayerController.OnDeathStatic += StopTimer;
@@ -69,6 +70,7 @@ namespace WildWind.Systems
         {
 
             isPlaying = true;
+            print("here");
             Timer();
 
         }
