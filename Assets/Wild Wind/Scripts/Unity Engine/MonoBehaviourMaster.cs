@@ -9,16 +9,36 @@ namespace UnityEngine
     public class MonoBehaviourMaster<T> : MonoBehaviour where T : MonoBehaviourMaster<T>
     {
 
+        public static Action OnEnableStatic;
         public static Action OnAwakeStatic;
         public static Action OnStartStatic;
         public static Action OnTickStatic;
         public static Action OnTickLateStatic;
         public static Action OnDeathStatic;
+        public Action OnEnables;
         public Action OnAwake;
         public Action OnStart;
         public Action OnTick;
         public Action OnTickLate;
         public Action OnDeath;
+
+        public virtual void OnEnable()
+        {
+            
+            if(OnEnables != null)
+            {
+
+                OnEnables();
+
+            }
+            if(OnEnableStatic != null)
+            {
+
+                OnEnableStatic();
+
+            }
+
+        }
 
         public virtual void Awake()
         {
@@ -26,7 +46,9 @@ namespace UnityEngine
             if (OnAwake != null)
                 OnAwake();
             if (OnAwakeStatic != null)
+            {
                 OnAwakeStatic();
+            }
 
         }
 
@@ -36,7 +58,10 @@ namespace UnityEngine
             if (OnStart != null)
                 OnStart();
             if (OnStartStatic != null)
+            {
                 OnStartStatic();
+
+            }
 
         }
 
