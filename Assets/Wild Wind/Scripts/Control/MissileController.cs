@@ -69,7 +69,8 @@ namespace WildWind.Control
         private void SetTarget()
         {
 
-            target = FindObjectOfType<PlayerController>().transform;
+            if (FindObjectOfType<PlayerController>() != null)
+                target = FindObjectOfType<PlayerController>().transform;
 
         }
 

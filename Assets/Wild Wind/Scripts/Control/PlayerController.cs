@@ -4,16 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using WildWind.Movement;
 using WildWind.Core;
+using UnityEngine.Playables;
 
 namespace WildWind.Control
 {
 
     [System.Serializable]
 
-    public class PlayerController : MonoBehaviourMaster<PlayerController>
+    public class PlayerController : MonoBehaviourMaster<PlayerController>, INotificationReceiver
     {
 
         Mover mover;
+
+        public void SayHi()
+        {
+
+            print("Hi");
+
+        }
 
         public override void Start()
         {
@@ -48,6 +56,10 @@ namespace WildWind.Control
 
         }
 
+        public void OnNotify(Playable origin, INotification notification, object context)
+        {
+            print(notification.ToString());
+        }
     }
 
 }
