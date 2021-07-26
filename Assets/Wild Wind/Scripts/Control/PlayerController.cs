@@ -11,17 +11,10 @@ namespace WildWind.Control
 
     [System.Serializable]
 
-    public class PlayerController : MonoBehaviourMaster<PlayerController>, INotificationReceiver
+    public class PlayerController : MonoBehaviourMaster<PlayerController>
     {
 
         Mover mover;
-
-        public void SayHi()
-        {
-
-            print("Hi");
-
-        }
 
         public override void Start()
         {
@@ -35,10 +28,26 @@ namespace WildWind.Control
         {
 
             base.Update();
-            if ((Input.mousePosition.x > Screen.width / 2 && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.RightArrow))
-                mover.Turn(1);
-            if ((Input.mousePosition.x < Screen.width / 2 && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.LeftArrow))
-                mover.Turn(-1);
+
+            if (Application.platform == RuntimePlatform.WindowsEditor)
+            {
+
+                if ((Input.mousePosition.x > Screen.width / 2 && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.RightArrow))
+                    mover.Turn(1);
+                if ((Input.mousePosition.x < Screen.width / 2 && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.LeftArrow))
+                    mover.Turn(-1);
+
+            }
+
+            if(Application.platform == RuntimePlatform.Android)
+            {
+
+                if (Input.GetTouch(0).position.x > Screen.width / 2)
+                    mover.Turn(1);
+                if (Input.GetTouch(0).position.x < Screen.width / 2)
+                    mover.Turn(-1);
+
+            }
 
         }
 
@@ -56,10 +65,6 @@ namespace WildWind.Control
 
         }
 
-        public void OnNotify(Playable origin, INotification notification, object context)
-        {
-            print(notification.ToString());
-        }
     }
 
 }

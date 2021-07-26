@@ -13,7 +13,7 @@ namespace WildWind.Systems
     {
 
         [SerializeField] int timeScore;
-        private int scoreMultiplier = 1;
+        public float scoreMultiplier = 1;
         private int _score = 0;
         public int score
         {
@@ -61,7 +61,7 @@ namespace WildWind.Systems
         public void AddScore(int addScore)
         {
 
-            score += (addScore * scoreMultiplier);
+            score += (int)(addScore * scoreMultiplier);
             print(score);
 
         }

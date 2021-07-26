@@ -35,6 +35,7 @@ namespace WildWind.Movement
         public override void Start()
         {
 
+            base.Start();
             SetMover();
             GetMoverNormalSpeed();          
 
@@ -59,6 +60,11 @@ namespace WildWind.Movement
 
             }
 
+        }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
         }
 
         void ResetTimer()

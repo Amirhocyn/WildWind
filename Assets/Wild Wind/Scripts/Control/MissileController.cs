@@ -19,6 +19,7 @@ namespace WildWind.Control
         public override void Start()
         {
 
+            base.Start();
             SetTarget();
             SetMover();
             StartCoroutine(WaitForEndOfLife());
@@ -78,6 +79,7 @@ namespace WildWind.Control
         public override void OnDestroy()
         {
 
+            base.OnDestroy();
             if (onDestroy != null)
                 onDestroy();
 
