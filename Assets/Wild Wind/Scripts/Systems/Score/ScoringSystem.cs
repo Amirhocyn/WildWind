@@ -32,13 +32,16 @@ namespace WildWind.Systems
             }
 
         }
-        public bool isPlaying;
+        public bool isPlaying = false;
 
         public override void Start()
         {
 
             base.Start();
-            PlayerController.OnStartStatic += StartTimer;
+
+            //GameSystem.Instance.OnStart += StartTimer;
+            Timer();
+            PlayerController.OnStartStatic += ResumeTimer;
             PlayerController.OnDeathStatic += ResetScore;
             PlayerController.OnDeathStatic += StopTimer;
 
@@ -74,6 +77,13 @@ namespace WildWind.Systems
 
         }
 
+        public void ResumeTimer()
+        {
+
+            isPlaying = true;
+
+        }
+
         public void StopTimer()
         {
 
@@ -84,7 +94,7 @@ namespace WildWind.Systems
         public async void Timer()
         {
 
-            while (isPlaying)
+            while (true)
             {
 
                 await AsyncResult.Delay(1000);

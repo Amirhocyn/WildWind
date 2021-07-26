@@ -25,6 +25,7 @@ namespace WildWind.Systems.Spawn
 
         public float spawnDistance = 100;
 
+        private List<GameObject> gameObjects = new List<GameObject>();
 
         public SpawnContainer missilesContainer;
         public SpawnContainer powerupsContainer;
@@ -47,6 +48,9 @@ namespace WildWind.Systems.Spawn
             Star.OnStartStatic += AddActiveStars;
             Star.OnDeathStatic += RemoveActiveStars;
 
+            PlayerController.OnDeathStatic += ClearObjects;
+            PlayerController.OnDeathStatic += ResetSpawnDirector;
+
         }
 
         public override void Start()
@@ -63,9 +67,15 @@ namespace WildWind.Systems.Spawn
             base.Update();
 
             UpdateSpawnDirector();
-            InstantiateObjects(missilesContainer, ref activeMissiles, ref maxActiveMissiles);
-            InstantiateObjects(powerupsContainer, ref activePowerups, ref maxActivePowerups);
-            InstantiateObjects(starsContainer, ref activeStars, ref maxActiveStars);
+
+            if (GameSystem.Instance.player != null)
+            {
+
+                InstantiateObjects(missilesContainer, ref activeMissiles, ref maxActiveMissiles);
+                InstantiateObjects(powerupsContainer, ref activePowerups, ref maxActivePowerups);
+                InstantiateObjects(starsContainer, ref activeStars, ref maxActiveStars);
+
+            }
 
         }
 
@@ -97,13 +107,14 @@ namespace WildWind.Systems.Spawn
                     {
 
                         Vector3 pos;
-                        Transform playerTransform = GetPlayer();
+                        Transform playerTransform = GameSystem.Instance.player.transform;
 
                         pos = RandomPosition(randAngle, playerTransform.forward);
                         pos *= spawnDistance;
                         pos += playerTransform.position;
 
-                        Instantiate(spawnContainer.spawnObjects[j].gameObject, pos, Quaternion.identity);
+                        GameObject temp = Instantiate(spawnContainer.spawnObjects[j].gameObject, pos, Quaternion.identity);
+                        gameObjects.Add(temp);
                         break;
 
                     }
@@ -133,6 +144,13 @@ namespace WildWind.Systems.Spawn
         {
             
             spawnDirector.time = Mathf.Clamp(ScoringSystem.Instance.score,0,(float)spawnDirector.duration - 1);
+
+        }
+
+        private void ResetSpawnDirector()
+        {
+
+            spawnDirector.time = 0;
 
         }
 
@@ -191,6 +209,20 @@ namespace WildWind.Systems.Spawn
         public override void OnEnable()
         {
             base.OnEnable();
+        }
+
+        public void ClearObjects()
+        {
+
+            foreach(GameObject a in gameObjects)
+            {
+
+                Destroy(a);
+
+            }
+
+            gameObjects.Clear();
+
         }
 
     }
