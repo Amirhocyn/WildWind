@@ -26,12 +26,14 @@ namespace WildWind.Combat
 
         private void InteractWithObject(GameObject other)
         {
+
             if (destructible && (other.tag == "Player" || other.tag == "Missile"))
             {
 
                 Destroy(gameObject);
 
             }
+
         }
 
         public void SetDestructible(bool destructible)

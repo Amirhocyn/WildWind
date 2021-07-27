@@ -14,10 +14,14 @@ namespace WildWind.Core
         public override void Start()
         {
 
-            GameObject followTarget = GameObject.FindGameObjectWithTag("Player");
+            base.Start();
 
-            if (followTarget != null)
-                GetComponent<CinemachineVirtualCamera>().Follow = followTarget.transform;
+        }
+
+        public void SetFollowTarget(GameObject followTarget)
+        {
+
+            GetComponent<CinemachineVirtualCamera>().Follow = followTarget.transform;
 
         }
 

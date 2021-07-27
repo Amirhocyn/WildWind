@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a76295684cc34749b249efebab7c77f, type: 3}
+  m_Name: Missiles Container
+  m_EditorClassIdentifier: 
+  spawnObjects:
+  - gameObject: {fileID: 6130823432024711246, guid: 003cc51f2d281e34daa00fc79ae22bb8, type: 3}
+    chance: 100
+  - gameObject: {fileID: 3105841431665740834, guid: bef8946a559195e42b302be0583fdb30, type: 3}
+    chance: 0
+  - gameObject: {fileID: 2851446485835237533, guid: 0aa023b681546b54ca0a49894691baec, type: 3}
+    chance: 0

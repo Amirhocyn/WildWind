@@ -22,10 +22,16 @@ namespace WildWind.Combat
             set
             {
 
-                _shields = Mathf.Clamp(value, 0,3);
+                _shields = Mathf.Clamp(value, 0,20);
+                InteractWithCombat();
 
             }
 
+        }
+
+        public override void Start()
+        {
+            base.Start();
         }
 
         public override void Update()
@@ -39,8 +45,12 @@ namespace WildWind.Combat
         {
 
             InteractWithObject(other.gameObject);
-            InteractWithCombat();
 
+        }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
         }
 
         private void InteractWithObject(GameObject other)

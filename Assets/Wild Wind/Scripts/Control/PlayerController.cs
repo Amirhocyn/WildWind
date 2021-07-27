@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WildWind.Movement;
 using WildWind.Core;
+using UnityEngine.Playables;
 
 namespace WildWind.Control
 {
@@ -27,10 +28,26 @@ namespace WildWind.Control
         {
 
             base.Update();
-            if ((Input.mousePosition.x > Screen.width / 2 && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.RightArrow))
-                mover.Turn(1);
-            if ((Input.mousePosition.x < Screen.width / 2 && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.LeftArrow))
-                mover.Turn(-1);
+
+            if (Application.platform == RuntimePlatform.WindowsEditor)
+            {
+
+                if ((Input.mousePosition.x > Screen.width / 2 && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.RightArrow))
+                    mover.Turn(1);
+                if ((Input.mousePosition.x < Screen.width / 2 && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.LeftArrow))
+                    mover.Turn(-1);
+
+            }
+
+            if(Application.platform == RuntimePlatform.Android)
+            {
+
+                if (Input.GetTouch(0).position.x > Screen.width / 2)
+                    mover.Turn(1);
+                if (Input.GetTouch(0).position.x < Screen.width / 2)
+                    mover.Turn(-1);
+
+            }
 
         }
 

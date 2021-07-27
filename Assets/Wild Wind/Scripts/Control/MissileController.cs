@@ -19,6 +19,7 @@ namespace WildWind.Control
         public override void Start()
         {
 
+            base.Start();
             SetTarget();
             SetMover();
             StartCoroutine(WaitForEndOfLife());
@@ -69,7 +70,8 @@ namespace WildWind.Control
         private void SetTarget()
         {
 
-            target = FindObjectOfType<PlayerController>().transform;
+            if (FindObjectOfType<PlayerController>() != null)
+                target = FindObjectOfType<PlayerController>().transform;
 
         }
 
@@ -77,6 +79,7 @@ namespace WildWind.Control
         public override void OnDestroy()
         {
 
+            base.OnDestroy();
             if (onDestroy != null)
                 onDestroy();
 
