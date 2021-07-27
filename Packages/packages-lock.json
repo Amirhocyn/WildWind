@@ -191,7 +191,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unityfx.async": {
-      "version": "file:T:/Unity Projects/WildWind/UnityFx.Async-master/UnityFx.Async-master/unity/Npm/Assets/Plugins/UnityFx.Async",
+
+      "version": "file:D:/Unity Projects/WildWind/UnityFx.Async-master/unity/Npm/Assets/Plugins/UnityFx.Async",
       "depth": 0,
       "source": "local",
       "dependencies": {}
