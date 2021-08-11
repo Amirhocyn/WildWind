@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -8,6 +9,8 @@ using WildWind.Control;
 using WildWind.Core;
 using WildWind.Movement;
 using WildWind.Systems;
+using EventHandler = UnityEngine.EventHandler;
+using Random = UnityEngine.Random;
 
 namespace WildWind.Systems.Spawn
 {
@@ -25,28 +28,15 @@ namespace WildWind.Systems.Spawn
 
         public float spawnDistance = 100;
 
-        private List<GameObject> gameObjects = new List<GameObject>();
-
-        public SpawnContainer missilesContainer;
-        public SpawnContainer powerupsContainer;
-        public SpawnContainer starsContainer;
+        private List<GameObject> spawnedObjects = new List<GameObject>();
+        [SerializeField]
+        private List<SpawnContainer> spawnContainers;
         private PlayableDirector spawnDirector;
 
         public override void Awake()
         {
 
             base.Awake();
-            MissileController.OnStartStatic += AddActiveMissiles;
-            MissileController.OnDeathStatic += RemoveActiveMissiles;
-
-            CollectibleBoost.OnStartStatic += AddActivePowerups;
-            CollectibleBoost.OnDeathStatic += RemoveActivePowerups;
-
-            CollectibleShield.OnStartStatic += AddActivePowerups;
-            CollectibleShield.OnDeathStatic += RemoveActivePowerups;
-
-            Star.OnStartStatic += AddActiveStars;
-            Star.OnDeathStatic += RemoveActiveStars;
 
             PlayerController.OnDeathStatic += ClearObjects;
             PlayerController.OnDeathStatic += ResetSpawnDirector;
@@ -58,7 +48,14 @@ namespace WildWind.Systems.Spawn
 
             base.Start();
             spawnDirector = GetComponent<PlayableDirector>();
-            
+
+            foreach (SpawnContainer a in spawnContainers)
+            {
+
+                PlayerController.OnStartStatic += a.Initialize;
+
+            }
+
         }
 
         public override void Update()
@@ -71,13 +68,66 @@ namespace WildWind.Systems.Spawn
             if (GameSystem.Instance.player != null)
             {
 
-                InstantiateObjects(missilesContainer, ref activeMissiles, ref maxActiveMissiles);
-                InstantiateObjects(powerupsContainer, ref activePowerups, ref maxActivePowerups);
-                InstantiateObjects(starsContainer, ref activeStars, ref maxActiveStars);
+                foreach (SpawnContainer a in spawnContainers)
+                    InstantiateObjects(a);
 
             }
 
         }
+
+        private void InstantiateObjects(SpawnContainer spawnContainer)
+        {
+
+            if (spawnContainer.CanAddObject())
+            {
+                
+                List<int> chance = new List<int>();
+
+                foreach (SpawnObject b in spawnContainer.spawnObjects)
+                {
+
+                    if (chance.Count != 0)
+                        chance.Add(chance[chance.Count - 1] + b.chance);
+                    else
+                        chance.Add(b.chance);
+
+                }
+
+                int rand = Random.Range(0, spawnContainer.overalChance);
+                float randAngle = RandomAngle();
+
+                for (int j = 0; j < chance.Count; j++)
+                {
+
+                    if (rand <= chance[j])
+                    {
+
+                        Vector3 pos;
+                        Transform playerTransform = GameSystem.Instance.player.transform;
+
+                        pos = RandomPosition(randAngle, playerTransform.forward);
+                        pos *= spawnDistance;
+                        pos += playerTransform.position;
+
+                        GameObject temp = Instantiate(spawnContainer.spawnObjects[j].gameObject, pos, Quaternion.identity);
+                        if (temp.GetComponent<EventHandler>() != null)
+                        {
+
+                            temp.GetComponent<EventHandler>().OnStart += spawnContainer.IncreaseObjectCount;
+                            temp.GetComponent<EventHandler>().OnDeath += spawnContainer.DecreaseObjectCount;
+
+                        }
+                        spawnedObjects.Add(temp);
+                        break;
+
+                    }
+
+                }
+
+            }
+
+        }
+
 
         private void InstantiateObjects(SpawnContainer spawnContainer, ref int activeRefObject, ref int maxActiveObjects)
         {
@@ -114,7 +164,7 @@ namespace WildWind.Systems.Spawn
                         pos += playerTransform.position;
 
                         GameObject temp = Instantiate(spawnContainer.spawnObjects[j].gameObject, pos, Quaternion.identity);
-                        gameObjects.Add(temp);
+                        spawnedObjects.Add(temp);
                         break;
 
                     }
@@ -214,14 +264,14 @@ namespace WildWind.Systems.Spawn
         public void ClearObjects()
         {
 
-            foreach(GameObject a in gameObjects)
+            foreach(GameObject a in spawnedObjects)
             {
 
                 Destroy(a);
 
             }
 
-            gameObjects.Clear();
+            spawnedObjects.Clear();
 
         }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,10 +19,6 @@ namespace WildWind.Systems
         public PlayerController player;
         public CameraController cameraController;
         private bool isPlaying = false;
-        public enum GameState { stop,playing}
-        GameState gameState;
-
-        public Action Reset;
 
         [SerializeField]
         PlayerController[] planes;
@@ -38,30 +35,38 @@ namespace WildWind.Systems
 
             base.Start();
 
-            //PlayerController.OnStartStatic += StartPlaying;
-            //PlayerController.OnDeathStatic += StopPlaying;
-            PlayerController.OnDeathStatic += InstantiatePlayer;
-
-            InstantiatePlayer();
+            PlayerController.OnDeathStatic += SetupPlayer;
+            PlayerController.OnStartStatic += StartPlaying;
+            PlayerController.OnDeathStatic += StopPlaying;
+            SetupPlayer();
             
-            //Reset += InstantiatePlayer;
-            //Reset += SetupCamera;
+        }
+
+        private void SetPlayerAsAlertCenter()
+        {
+
+            Alert.alertCenter = player.transform;
 
         }
 
         private void SetupCamera()
         {
-            print("here again");
             cameraController.SetFollowTarget(player.gameObject);
         }
 
-        private async void InstantiatePlayer()
+        private void SetupPlayer()
+        {
+            StartCoroutine(InstantiatePlayer());
+        }
+
+        private IEnumerator InstantiatePlayer()
         {
 
-            await AsyncResult.Delay(1000);
+            yield return new WaitForSeconds(1f);
             int rand = Random.Range(0, planes.Length);
             player = Instantiate(planes[rand], Vector3.zero, Quaternion.identity);
             SetupCamera();
+            SetPlayerAsAlertCenter();
 
         }
 
@@ -103,6 +108,27 @@ namespace WildWind.Systems
         {
 
             return isPlaying;
+
+        }
+
+        private void OnApplicationQuit()
+        {
+
+            StopPlaying();
+
+        }
+
+        private void OnApplicationFocus(bool focus)
+        {
+
+            StartPlaying();
+
+        }
+
+        private void OnApplicationPause(bool pause)
+        {
+
+            StopPlaying();
 
         }
 
