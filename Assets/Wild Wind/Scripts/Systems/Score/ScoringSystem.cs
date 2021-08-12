@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using WildWind.Control;
 using UnityFx.Async;
+using UnityEngine.UI;
 
 namespace WildWind.Systems
 {
@@ -14,7 +15,10 @@ namespace WildWind.Systems
 
         [SerializeField] int timeScore;
         public float scoreMultiplier = 1;
+        [SerializeField]
+        private Text scoreGUI;
         private int _score = 0;
+        Coroutine timer;
         public int score
         {
 
@@ -32,16 +36,13 @@ namespace WildWind.Systems
             }
 
         }
-        public bool isPlaying = false;
 
         public override void Start()
         {
 
             base.Start();
 
-            //GameSystem.Instance.OnStart += StartTimer;
-            Timer();
-            PlayerController.OnStartStatic += ResumeTimer;
+            PlayerController.OnStartStatic += StartTimer;
             PlayerController.OnDeathStatic += ResetScore;
             PlayerController.OnDeathStatic += StopTimer;
 
@@ -51,6 +52,7 @@ namespace WildWind.Systems
         {
 
             base.Update();
+            scoreGUI.text = "Score : " + score.ToString();
 
         }
 
@@ -65,41 +67,31 @@ namespace WildWind.Systems
         {
 
             score += (int)(addScore * scoreMultiplier);
-            print(score);
 
         }
 
         public void StartTimer()
         {
 
-            isPlaying = true;
-            Timer();
-
-        }
-
-        public void ResumeTimer()
-        {
-
-            isPlaying = true;
+            timer = StartCoroutine("Timer",timer);
 
         }
 
         public void StopTimer()
         {
 
-            isPlaying = false;
+            StopCoroutine(timer);
 
         }
 
-        public async void Timer()
+        public IEnumerator Timer()
         {
 
-            while (true)
+            while(true)
             {
 
-                await AsyncResult.Delay(1000);
-                if (isPlaying)
-                    AddScore(timeScore);
+                yield return new WaitForSeconds(1);
+                AddScore(timeScore);
 
             }
 

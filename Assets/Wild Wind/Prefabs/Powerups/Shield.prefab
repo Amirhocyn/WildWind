@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4853375499672253816}
   - component: {fileID: 4853375499672253819}
   - component: {fileID: 7640380046686640838}
-  - component: {fileID: -3824477484723114242}
+  - component: {fileID: -7513802602712147532}
+  - component: {fileID: 7724622608371975093}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Shield
@@ -97,7 +98,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3824477484723114242
+--- !u!114 &-7513802602712147532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,6 +107,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4853375499672253821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 482ec3afa1999944ab40a152f31bf6c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 245e677034c30b74e9c60952b7de0f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alertUI: {fileID: 2846409802517395220, guid: 5512f31477b700b40b823049536e40b3, type: 3}
+--- !u!114 &7724622608371975093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4853375499672253821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c6284b55b78bc4dbf5234a3beeaa76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

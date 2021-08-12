@@ -16,6 +16,11 @@ MonoBehaviour:
   - gameObject: {fileID: 6130823432024711246, guid: 003cc51f2d281e34daa00fc79ae22bb8, type: 3}
     chance: 100
   - gameObject: {fileID: 3105841431665740834, guid: bef8946a559195e42b302be0583fdb30, type: 3}
-    chance: 0
+    chance: 100
   - gameObject: {fileID: 2851446485835237533, guid: 0aa023b681546b54ca0a49894691baec, type: 3}
-    chance: 0
+    chance: 100
+  canAdd: 1
+  maxActiveObjects: 3
+  timeRange: {x: 3, y: 10}
+  activeObjects: 0
+  limitCap: 1
