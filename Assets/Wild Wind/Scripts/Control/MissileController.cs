@@ -15,6 +15,8 @@ namespace WildWind.Control
         Mover mover;
         [SerializeField] float lifeTime = 30;
         public static Action onDestroy;
+        private float delayedSteering = 0;
+        private float angleBetween = 0;
 
         public override void Start()
         {
@@ -23,6 +25,7 @@ namespace WildWind.Control
             SetTarget();
             SetMover();
             StartCoroutine(WaitForEndOfLife());
+            StartCoroutine(UpdateSteering());
 
         }
 
@@ -32,12 +35,14 @@ namespace WildWind.Control
             if (target != null)
             {
 
-                float angleBetween = GetAngleBetweenMissileAndTarget();
+                angleBetween = GetAngleBetweenMissileAndTarget();
+                angleBetween = Mathf.Clamp(angleBetween * 3f / mover.GetTurnAngle(), -1, 1);
                 InteractWithMover(angleBetween);
 
             }
 
         }
+
         IEnumerator WaitForEndOfLife()
         {
 
@@ -49,7 +54,7 @@ namespace WildWind.Control
         private void InteractWithMover(float angleBetween)
         {
 
-            mover.Turn(Mathf.Clamp(angleBetween * 3 / mover.GetTurnAngle(), -1, 1));
+            mover.Turn(angleBetween);
 
         }
 
@@ -82,6 +87,26 @@ namespace WildWind.Control
             base.OnDestroy();
             if (onDestroy != null)
                 onDestroy();
+
+        }
+
+        IEnumerator UpdateSteering()
+        {
+
+            while (true)
+            {
+
+                yield return new WaitForSeconds(0.01f);
+
+                if (Mathf.Abs(Mathf.Abs(delayedSteering) - Mathf.Abs(angleBetween)) < 0.01f)
+                    delayedSteering = angleBetween;
+
+                if (delayedSteering < angleBetween)
+                    delayedSteering += 0.01f;
+                if (delayedSteering > angleBetween)
+                    delayedSteering -= 0.01f;
+
+            }
 
         }
 
