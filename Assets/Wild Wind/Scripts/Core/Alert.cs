@@ -11,19 +11,20 @@ namespace WildWind.Core
     {
 
         public static Transform alertCenter;
-        private Renderer Renderer;
+        [SerializeField] private Renderer Renderer;
         [SerializeField]
         private GameObject alertUI;
         Canvas canvas;
+        [SerializeField] Vector2 alertOffset = Vector2.zero;
 
         public override void Start()
         {
 
             base.Start();
 
-            Renderer = GetComponent<Renderer>();
             canvas = FindObjectOfType<Canvas>();
             alertUI = Instantiate(alertUI, canvas.transform);
+            alertUI.SetActive(false);
 
         }
 
@@ -38,10 +39,13 @@ namespace WildWind.Core
 
         private void UpdateAlert()
         {
+
             if (!Renderer.isVisible)
             {
 
-                alertUI.SetActive(true);
+                if (!alertUI.activeSelf)
+                    alertUI.SetActive(true);
+
                 Vector3 dir = transform.position - alertCenter.position;
                 dir = dir.normalized;
                 Vector2 line = new Vector2(dir.x, dir.z);
@@ -50,14 +54,14 @@ namespace WildWind.Core
                 if (Mathf.Abs(line.x) / Camera.main.aspect < Mathf.Abs(line.y))
                 {
 
-                    float scale = (canvas.GetComponent<RectTransform>().sizeDelta.y / 2) / Mathf.Abs(line.y);
+                    float scale = ((canvas.GetComponent<RectTransform>().sizeDelta.y - alertOffset.y) / 2) / Mathf.Abs(line.y);
                     position = scale * line;
 
                 }
                 else
                 {
 
-                    float scale = (canvas.GetComponent<RectTransform>().sizeDelta.x / 2) / Mathf.Abs(line.x);
+                    float scale = ((canvas.GetComponent<RectTransform>().sizeDelta.x - alertOffset.x) / 2) / Mathf.Abs(line.x);
                     position = scale * line;
 
                 }
