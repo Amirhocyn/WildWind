@@ -53,7 +53,7 @@ namespace WildWind.Systems
 
             }
 
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this);
 
         }
 

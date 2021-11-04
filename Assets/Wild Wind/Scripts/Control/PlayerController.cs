@@ -41,7 +41,7 @@ namespace WildWind.Control
 
             }
 
-            if(Application.platform == RuntimePlatform.Android)
+            if (Application.platform == RuntimePlatform.Android)
             {
 
                 mover.Turn(0);
@@ -65,7 +65,8 @@ namespace WildWind.Control
         public override void OnDestroy()
         {
 
-            base.OnDestroy();
+            if (base.OnDeath != null)
+                base.OnDestroy();
 
         }
 

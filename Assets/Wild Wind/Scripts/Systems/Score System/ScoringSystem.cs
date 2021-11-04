@@ -52,7 +52,6 @@ namespace WildWind.Systems
         {
 
             base.Update();
-            scoreGUI.text = "Score : " + score.ToString();
 
         }
 

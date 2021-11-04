@@ -38,7 +38,8 @@ namespace WildWind.Systems.Spawn
 
             base.Awake();
 
-            PlayerController.OnDeathStatic += ClearObjects;
+            //PlayerController.OnDeathStatic += ClearObjects;
+            GameSystem.Instance.OnGameStart += ClearObjects;
             PlayerController.OnDeathStatic += ResetSpawnDirector;
 
         }
@@ -80,7 +81,7 @@ namespace WildWind.Systems.Spawn
 
             if (spawnContainer.CanAddObject())
             {
-                
+
                 List<int> chance = new List<int>();
 
                 foreach (SpawnObject b in spawnContainer.spawnObjects)
@@ -117,53 +118,6 @@ namespace WildWind.Systems.Spawn
                             temp.GetComponent<EventHandler>().OnDeath += spawnContainer.DecreaseObjectCount;
 
                         }
-                        spawnedObjects.Add(temp);
-                        break;
-
-                    }
-
-                }
-
-            }
-
-        }
-
-
-        private void InstantiateObjects(SpawnContainer spawnContainer, ref int activeRefObject, ref int maxActiveObjects)
-        {
-
-            if (activeRefObject < maxActiveObjects)
-            {
-
-                List<int> chance = new List<int>();
-
-                foreach (SpawnObject b in spawnContainer.spawnObjects)
-                {
-
-                    if (chance.Count != 0)
-                        chance.Add(chance[chance.Count - 1] + b.chance);
-                    else
-                        chance.Add(b.chance);
-
-                }
-
-                int rand = Random.Range(1, spawnContainer.overalChance);
-                float randAngle = RandomAngle();
-
-                for (int j = 0; j < chance.Count; j++)
-                {
-
-                    if (rand <= chance[j])
-                    {
-
-                        Vector3 pos;
-                        Transform playerTransform = GameSystem.Instance.player.transform;
-
-                        pos = RandomPosition(randAngle, playerTransform.forward);
-                        pos *= spawnDistance;
-                        pos += playerTransform.position;
-
-                        GameObject temp = Instantiate(spawnContainer.spawnObjects[j].gameObject, pos, Quaternion.identity);
                         spawnedObjects.Add(temp);
                         break;
 
