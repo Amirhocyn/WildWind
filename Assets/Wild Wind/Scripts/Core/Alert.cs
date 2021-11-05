@@ -40,6 +40,15 @@ namespace WildWind.Core
         private void UpdateAlert()
         {
 
+            if (alertCenter == null)
+            {
+
+                Destroy(alertUI);
+                this.enabled = false;
+                return;
+
+            }
+
             if (!Renderer.isVisible)
             {
 
@@ -71,6 +80,7 @@ namespace WildWind.Core
             }
             else
                 alertUI.SetActive(false);
+
         }
 
         public override void OnDestroy()

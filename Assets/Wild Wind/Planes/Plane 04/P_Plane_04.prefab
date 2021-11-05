@@ -451,6 +451,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Plane_04
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 97a5daa09dfc49e4ea88c66604af40d4, type: 3}
+      propertyPath: m_TagString
+      value: Plane Mesh
+      objectReference: {fileID: 0}
     - target: {fileID: 2040542448765327740, guid: 97a5daa09dfc49e4ea88c66604af40d4, type: 3}
       propertyPath: m_Name
       value: Locust

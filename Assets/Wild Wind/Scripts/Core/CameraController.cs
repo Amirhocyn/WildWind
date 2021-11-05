@@ -21,7 +21,7 @@ namespace WildWind.Core
         public void SetFollowTarget(GameObject followTarget)
         {
 
-            GetComponent<CinemachineVirtualCamera>().Follow = followTarget.transform;
+            GetComponentInChildren<CinemachineVirtualCamera>().Follow = followTarget.transform;
 
         }
 

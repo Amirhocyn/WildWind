@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 namespace WildWind.Systems.Spawn
 {
 
-    [CreateAssetMenu(fileName = "New Spawn Container",menuName = "Spawn Container",order = 0)]
+    [CreateAssetMenu(fileName = "New Spawn Container", menuName = "Spawn Container", order = 0)]
     [Serializable]
     public class SpawnContainer : ScriptableObject
     {
@@ -23,7 +23,7 @@ namespace WildWind.Systems.Spawn
             {
 
                 int chance = 0;
-                foreach(SpawnObject a in spawnObjects)
+                foreach (SpawnObject a in spawnObjects)
                 {
 
                     chance += a.chance;
@@ -89,10 +89,10 @@ namespace WildWind.Systems.Spawn
         public async void TimerDelay()
         {
 
-            while (GameSystem.Instance.IsPlaying())
+            while (GameSystem.Instance.gameState == GameSystem.GameState.Playing || GameSystem.Instance.gameState == GameSystem.GameState.Paused)
             {
 
-                if (limitCap != maxActiveObjects)
+                if (limitCap != maxActiveObjects && GameSystem.Instance.gameState == GameSystem.GameState.Playing)
                 {
 
                     await AsyncResult.Delay(Random.Range(timeRange.x, timeRange.y));
