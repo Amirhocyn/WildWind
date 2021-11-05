@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 9186350682120636859}
   - component: {fileID: 9186350682120636860}
   - component: {fileID: 9186350682120636861}
+  - component: {fileID: 8983776635983325428}
   m_Layer: 0
   m_Name: P_Plane_01
   m_TagString: Player
@@ -333,6 +334,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxBoostTime: 10
   boostSpeedMultiplier: 1.7
+--- !u!114 &8983776635983325428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9186350682120636862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3705238baa41f04281d5c0dfdb98359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMultplierTime: 10
 --- !u!1001 &5962240373133713114
 PrefabInstance:
   m_ObjectHideFlags: 0

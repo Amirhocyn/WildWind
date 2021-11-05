@@ -811,6 +811,8 @@ MonoBehaviour:
       chance: 100
     - gameObject: {fileID: 4853375499672253821, guid: cecd85947c83bae44a659648e5fd8927, type: 3}
       chance: 100
+    - gameObject: {fileID: 8648905410912876425, guid: dc5677875d4dd1e4db4021160460729f, type: 3}
+      chance: 100
     maxActiveObjects: 1
     TimeRange: {x: 10, y: 15}
 --- !u!114 &8104684307968332647

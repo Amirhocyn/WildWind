@@ -8,6 +8,7 @@ TagManager:
   - Shield
   - Booster
   - Plane Mesh
+  - Score Multiplier
   layers:
   - Default
   - TransparentFX
