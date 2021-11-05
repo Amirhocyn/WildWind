@@ -18,7 +18,6 @@ namespace WildWind.Systems
         [SerializeField]
         private Text scoreGUI;
         private int _score = 0;
-        Coroutine timer;
         public int score
         {
 
@@ -36,6 +35,7 @@ namespace WildWind.Systems
             }
 
         }
+        Coroutine timer;
 
         public override void Start()
         {

@@ -10,7 +10,7 @@ namespace WildWind.Movement
 
         [SerializeField] float maxBoostTime = 10;
         [SerializeField] float boostSpeedMultiplier;
-        private float baseSpeed;
+        private float defaultSpeed;
         private float _remainingTime = 0;
         private float remainingTime
         {
@@ -37,7 +37,7 @@ namespace WildWind.Movement
 
             base.Start();
             SetMover();
-            GetMoverNormalSpeed();          
+            GetMoverDefaultSpeed();          
 
         }      
 
@@ -79,22 +79,24 @@ namespace WildWind.Movement
             mover = GetComponent<Mover>();
         }
 
-        void GetMoverNormalSpeed()
+        void GetMoverDefaultSpeed()
         {
-            baseSpeed = mover.GetSpeed();
+
+            defaultSpeed = mover.GetSpeed();
+
         }
 
         private void ResetMoverSpeed()
         {
 
-            mover.SetSpeed(baseSpeed);
+            mover.SetSpeed(defaultSpeed);
 
         }
 
         void BoostMover()
         {
 
-            mover.SetSpeed(baseSpeed * boostSpeedMultiplier);
+            mover.SetSpeed(defaultSpeed * boostSpeedMultiplier);
 
         }
 

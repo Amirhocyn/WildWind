@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cdbcb967a18281646ae63dbb59c33030, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ed6ee698f1d045541a314832b9b579ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,8 +96,8 @@ GameObject:
   - component: {fileID: -4177425417329514800}
   - component: {fileID: 2816667913775815682}
   m_Layer: 0
-  m_Name: P_Booster
-  m_TagString: Booster
+  m_Name: P_ScoreMultiplier
+  m_TagString: Score Multiplier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Renderer: {fileID: 7206296319038421054}
-  alertUI: {fileID: 8240838237845462045, guid: dc5fdcaed02301843a3a2cd51ac25ed6, type: 3}
+  alertUI: {fileID: 8240838237845462045, guid: cc0cafa7ac28be24c82a718ddeda4119, type: 3}
   alertOffset: {x: 20, y: 20}
 --- !u!114 &-4177425417329514800
 MonoBehaviour:
