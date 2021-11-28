@@ -17,14 +17,23 @@ namespace WildWind.Systems
     public class GameSystem : MonoSingleton<GameSystem>
     {
 
-        [SerializeField] PlayerController[] planes;
-        [SerializeField] CameraController P_cameraController;
-        CameraController cameraController;
+        #region Variables
+        [SerializeField] private PlayerController[] planes;
+        [SerializeField] private CameraController P_cameraController;
+        private CameraController cameraController;
+        [HideInInspector] public PlayerController player { get; private set; }
+        private PlayerController plane;
+        public float time { get; private set; }
+        private bool isGameAborted { get; set; }
+        #endregion
 
-        internal Action OnGameStart;
-        internal Action OnFinished;
-        internal Action OnGameStateChange;
+        #region Events
+        internal Action OnGameStart { get; set; }
+        internal Action OnFinished { get; set; }
+        internal Action OnLevelCleared { get; set; }
+        #endregion
 
+        #region Game State
         public enum GameState { Home, Paused, Playing, Finished, None };
         private GameState _gameState;
         public GameState gameState 
@@ -43,33 +52,7 @@ namespace WildWind.Systems
 
             } 
         }
-
-        [HideInInspector] public PlayerController player;
-
-        private PlayerController plane;
-        private int id
-        {
-
-            get
-            {
-
-                return PlayerPrefs.GetInt("Default Plane");
-
-            }
-            set
-            {
-
-                PlayerPrefs.SetInt("Default Plane", value);
-                PlayerPrefs.Save();
-
-            }
-
-        }
-
-        #region Scene roots
-        public static Transform S_pre { get { return GameObject.Find("S_pre").transform; } }
-        public static Transform S_Home { get { return GameObject.Find("S_Home").transform; } }
-        public static Transform S_Game { get { return GameObject.Find("S_Game").transform; } }
+        internal Action OnGameStateChange;
         #endregion
 
         public override void Awake()
@@ -85,60 +68,17 @@ namespace WildWind.Systems
             base.Start();
 
             LoadHomeMenu();
-
+            OnLevelCleared += ResetTime;
+            OnLevelCleared += () => Time.timeScale = 1;
             Application.targetFrameRate = Screen.currentResolution.refreshRate;
 
-
         }
 
-        public void LoadHomeMenu()
+        public void Update()
         {
 
-            
-            SceneManager.LoadSceneAsync("S_Home", LoadSceneMode.Additive).completed += (op =>
-            {
-                gameState = GameState.Home;
-                SceneManager.SetActiveScene(SceneManager.GetSceneByName("S_Home"));
-                InstantiatePlane();
-            });
+            HandleGameState();
 
-            for(int j = 0;j < SceneManager.sceneCount;j++)
-            {
-
-                if(SceneManager.GetSceneAt(j).name == "S_Game")
-                {
-
-                    SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(j));
-
-                }
-
-            }
-
-        }
-
-        public IEnumerator E_LoadHomeMenu()
-        {
-            yield return SceneManager.LoadSceneAsync("S_Home", LoadSceneMode.Additive);//.completed += (op =>
-            //{
-            //    gameState = GameState.Home;
-            //});
-            gameState = GameState.Home;
-            InstantiatePlane();
-            //SceneManager.LoadSceneAsync("S_Home", LoadSceneMode.Additive);
-            //gameState = GameState.Home;
-
-        }
-
-        public override void Update()
-        {
-
-            base.Update();
-
-        }
-
-        public override void LateUpdate()
-        {
-            base.LateUpdate();
         }
 
         public override void OnDestroy()
@@ -172,6 +112,48 @@ namespace WildWind.Systems
 
         }
 
+        #region Game Mechanics
+
+        /// <summary>
+        /// Handles the mechanics related to each state of the game
+        /// </summary>
+        private void HandleGameState()
+        {
+
+            switch (gameState)
+            {
+
+                case GameState.Playing:
+                    {
+
+                        time += Time.deltaTime;
+                        break;
+
+                    }
+                default:
+                    {
+
+                        break;
+
+                    }
+
+            }
+
+        }
+
+        /// <summary>
+        /// resets the time for each game session
+        /// </summary>
+        private void ResetTime()
+        {
+
+            time = 0;
+
+        }
+
+        /// <summary>
+        /// Sets the player as the alert center, GUI alerts calculate their position using the alertCenter transform
+        /// </summary>
         private void SetPlayerAsAlertCenter()
         {
 
@@ -179,6 +161,9 @@ namespace WildWind.Systems
 
         }
 
+        /// <summary>
+        /// Instantiates the orphographic game camera
+        /// </summary>
         private void SetupCamera()
         {
 
@@ -187,36 +172,37 @@ namespace WildWind.Systems
 
         }
 
+        /// <summary>
+        /// instantiates the player
+        /// </summary>
         private void InstantiatePlayer()
         {
 
-            int planeToLoad = PlayerPrefs.GetInt("Default Plane");
             gameState = GameState.Playing;
-            player = Instantiate(planes[planeToLoad], Vector3.zero, Quaternion.identity);
-            if (OnGameStart != null)
-                OnGameStart();
+            player = Instantiate(planes[SaveData.instance.planeId], Vector3.zero, Quaternion.identity);
             SetupCamera();
             SetPlayerAsAlertCenter();
-            player.OnDeath += FinishGame;
+            player.OnDeath += HandleOnGameFinish;
+
+            //set the player as the spawn center of clouds
+            player.OnStart += (() =>
+            {
+
+                if (FindObjectOfType<CloudsControl>() != null)
+                {
+
+                    FindObjectOfType<CloudsControl>().SetCenterOfSpawn(player.transform.position);
+
+                }
+
+            });
 
         }
 
-        public void PauseGame()
-        {
-
-            gameState = GameState.Paused;
-            Time.timeScale = 0;
-
-        }
-
-        public void ResumeGame()
-        {
-
-            gameState = GameState.Playing;
-            Time.timeScale = 1;
-
-        }
-
+        /// <summary>
+        /// returns an array contatining all of the planes present in game
+        /// </summary>
+        /// <returns></returns>
         public PlayerController[] GetPlanes()
         {
 
@@ -224,7 +210,25 @@ namespace WildWind.Systems
 
         }
 
-        public void StartGameSession()
+        internal void BuyPlane()
+        {
+
+            int balance = SaveData.instance.balance;
+            bool buyProccessed = planes[SaveData.instance.planeId].Buy(ref balance);
+            if (buyProccessed)
+            {
+
+                SaveData.instance.balance = balance;
+                SaveData.instance.unlockedPlanes.Add(SaveData.instance.planeId);
+
+            }
+
+        }
+
+        #endregion
+
+        #region Game session Management
+        internal void StartGameSession()
         {
 
             StartCoroutine(E_StartGameSession());
@@ -234,65 +238,171 @@ namespace WildWind.Systems
         private IEnumerator E_StartGameSession()
         {
 
-            Scene[] scenes = SceneManager.GetAllScenes();
-            SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
-            foreach (Scene scene in scenes)
+            for (int j = 0; j < SceneManager.sceneCount; j++)
             {
 
+                Scene scene = SceneManager.GetSceneAt(j);
                 if (scene.name == "S_Home")
                     yield return SceneManager.UnloadSceneAsync("S_Home");
                 if (scene.name == "S_Game")
-                    yield return SceneManager.UnloadSceneAsync("S_Game");
+                {
+
+                    AsyncOperation operation = SceneManager.UnloadSceneAsync("S_Game");
+                    operation.completed += ((op) =>
+                    {
+
+                        if (OnLevelCleared != null)
+                            OnLevelCleared();
+
+                    });
+                    yield return operation;
+
+                }
 
             }
-            yield return SceneManager.LoadSceneAsync("S_Game", LoadSceneMode.Additive);
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("S_Game"));
+
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("S_Game", LoadSceneMode.Additive);
+            asyncOperation.completed += ((op) =>
+            {
+
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName("S_Game"));
+                HandleOnGameStart();
+
+            });
+            yield return asyncOperation;
+
+        }
+
+        private void HandleOnGameStart()
+        {
+
             if (OnGameStart != null)
                 OnGameStart();
-
             gameState = GameState.Playing;
-
             InstantiatePlayer();
 
         }
 
-        private void FinishGame()
+        private void HandleOnGameFinish()
         {
-
+            
+            if (isGameAborted)
+                return;
             if (OnFinished != null)
                 OnFinished();
-
+            SaveData.instance.highestRecord = ScoringSystem.Instance.score;
             gameState = GameState.Finished;
+            isGameAborted = false;
 
         }
 
+        internal void PauseGame()
+        {
+
+            gameState = GameState.Paused;
+            Time.timeScale = 0;
+
+        }
+
+        internal void ResumeGame()
+        {
+
+            gameState = GameState.Playing;
+            Time.timeScale = 1;
+
+        }
+
+        internal void AbortSession()
+        {
+
+            isGameAborted = true;
+            LoadHomeMenu();
+
+        }
+
+        #endregion
+
         #region Home Menu
+
+        #region Load Home Menu
+
+        internal void LoadHomeMenu()
+        {
+
+            for (int j = 0; j < SceneManager.sceneCount; j++)
+            {
+
+                Scene scene = SceneManager.GetSceneAt(j);
+                if (scene.name == "S_Game")
+                {
+
+                    SceneManager.UnloadSceneAsync(scene).completed += ((op) =>
+                    {
+
+                        if (OnLevelCleared != null)
+                            OnLevelCleared();
+
+                    });
+
+                }
+
+            }
+
+            SceneManager.LoadSceneAsync("S_Home", LoadSceneMode.Additive).completed += (op =>
+            {
+                gameState = GameState.Home;
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName("S_Home"));
+                InstantiatePlane();
+            });
+
+        }
+
+        private IEnumerator E_LoadHomeMenu()
+        {
+
+            yield return SceneManager.LoadSceneAsync("S_Home", LoadSceneMode.Additive);
+            gameState = GameState.Home;
+            InstantiatePlane();
+
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Instantiates the next plane
+        /// </summary>
         internal void NextPlane()
         {
 
-            id = Mathf.Clamp(id + 1, 0, GameSystem.Instance.GetPlanes().Length - 1);
+            SaveData.instance.planeId = Mathf.Clamp(SaveData.instance.planeId + 1, 0, GetPlanes().Length - 1);
+
             InstantiatePlane();
 
         }
-
+        
+        /// <summary>
+        /// Instantiates the previous plane
+        /// </summary>
         internal void PreviousPlane()
         {
 
-            id = Mathf.Clamp(id - 1, 0, GameSystem.Instance.GetPlanes().Length);
+            SaveData.instance.planeId = Mathf.Clamp(SaveData.instance.planeId - 1, 0, GetPlanes().Length - 1);
             InstantiatePlane();
 
         }
 
+        /// <summary>
+        /// Instantiates the plane from list with the current Plane ID, disables all controls 
+        /// </summary>
         private void InstantiatePlane()
         {
 
             if (plane != null)
                 Destroy(plane.gameObject);
-            plane = Instantiate(GameSystem.Instance.GetPlanes()[id]);
+            plane = Instantiate(GetPlanes()[SaveData.instance.planeId]);
             plane.GetComponent<PlayerController>().enabled = false;
             plane.GetComponent<Mover>().enabled = false;
             plane.GetComponent<Combat.Combat>().enabled = false;
-            //plane.transform.parent = S_Home.transform;
 
         }
         #endregion

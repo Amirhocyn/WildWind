@@ -16,6 +16,8 @@ namespace WildWind.Core
         private GameObject alertUI;
         Canvas canvas;
         [SerializeField] Vector2 alertOffset = Vector2.zero;
+        private RectTransform alertUIRect;
+        private RectTransform canvasRect;
 
         public override void Start()
         {
@@ -25,13 +27,13 @@ namespace WildWind.Core
             canvas = FindObjectOfType<Canvas>();
             alertUI = Instantiate(alertUI, canvas.transform);
             alertUI.SetActive(false);
+            alertUIRect = alertUI.GetComponent<RectTransform>();
+            canvasRect = canvas.GetComponent<RectTransform>();
 
         }
 
-        public override void Update()
+        public void Update()
         {
-
-            base.Update();
 
             UpdateAlert();
 
@@ -63,19 +65,19 @@ namespace WildWind.Core
                 if (Mathf.Abs(line.x) / Camera.main.aspect < Mathf.Abs(line.y))
                 {
 
-                    float scale = ((canvas.GetComponent<RectTransform>().sizeDelta.y - alertOffset.y) / 2) / Mathf.Abs(line.y);
+                    float scale = ((canvasRect.sizeDelta.y - alertOffset.y) / 2) / Mathf.Abs(line.y);
                     position = scale * line;
 
                 }
                 else
                 {
 
-                    float scale = ((canvas.GetComponent<RectTransform>().sizeDelta.x - alertOffset.x) / 2) / Mathf.Abs(line.x);
+                    float scale = ((canvasRect.sizeDelta.x - alertOffset.x) / 2) / Mathf.Abs(line.x);
                     position = scale * line;
 
                 }
 
-                alertUI.GetComponent<RectTransform>().localPosition = position;
+                alertUIRect.localPosition = position;
 
             }
             else

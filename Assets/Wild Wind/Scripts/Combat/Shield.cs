@@ -34,13 +34,6 @@ namespace WildWind.Combat
             base.Start();
         }
 
-        public override void Update()
-        {
-
-            base.Update();
-
-        }
-
         private void OnTriggerEnter(Collider other)
         {
 

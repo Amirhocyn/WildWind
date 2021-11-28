@@ -12,10 +12,6 @@ namespace WildWind.Movement
             base.Awake();
         }
 
-        public override void LateUpdate()
-        {
-            base.LateUpdate();
-        }
 
         public override void OnDestroy()
         {
@@ -32,10 +28,6 @@ namespace WildWind.Movement
             base.Start();
         }
 
-        public override void Update()
-        {
-            base.Update();
-        }
     }
 
 }

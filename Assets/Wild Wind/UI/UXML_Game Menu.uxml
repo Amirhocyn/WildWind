@@ -1,9 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="Game.uss" />
-    <ui:VisualElement focusable="true" name="Game-Menu" tabindex="0" style="flex-grow: 1; top: 0; position: absolute; height: 150px; width: 100%; align-items: center; justify-content: center; display: flex;">
-        <ui:Button text="Pause" display-tooltip-when-elided="true" name="pause" class="Button" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; -unity-text-align: middle-center; white-space: nowrap; position: relative;" />
-        <ui:Label text="0:00" display-tooltip-when-elided="true" name="Timer" style="position: absolute; left: 1%; top: 1%; height: 119px; width: 422px; font-size: 90px; color: rgb(103, 35, 24); -unity-font-style: bold; -unity-text-align: upper-left; white-space: nowrap;" />
-        <ui:Label text="Label" display-tooltip-when-elided="true" name="Coins" class="TEXT" />
-        <ui:IMGUIContainer style="position: absolute; right: 6px; background-image: url(&apos;/Assets/Wild Wind/Powerups/SP_Coin.png#SP_Coin&apos;); width: 100px; height: 100px; top: 0; visibility: visible; opacity: 1;" />
-    </ui:VisualElement>
-</ui:UXML>
