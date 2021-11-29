@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Renderer: {fileID: 909829817174680721}
   alertUI: {fileID: 2846409802517395220, guid: 5512f31477b700b40b823049536e40b3, type: 3}
-  alertOffset: {x: 20, y: 20}
+  alertOffset: {x: 40, y: 40}
 --- !u!114 &7724622608371975093
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ namespace WildWind.Combat
     public class Combat : MonoBehaviourMaster<Combat>
     {
 
-        private bool destructible { get; set; }
+        private bool destructible { get; set; } = true;
 
         private void OnTriggerEnter(Collider other)
         {

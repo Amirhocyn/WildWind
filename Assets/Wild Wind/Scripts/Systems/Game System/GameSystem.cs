@@ -70,7 +70,7 @@ namespace WildWind.Systems
             LoadHomeMenu();
             OnLevelCleared += ResetTime;
             OnLevelCleared += () => Time.timeScale = 1;
-            Application.targetFrameRate = Screen.currentResolution.refreshRate;
+            Application.targetFrameRate = 120;
 
         }
 
@@ -317,6 +317,7 @@ namespace WildWind.Systems
 
             isGameAborted = true;
             LoadHomeMenu();
+            isGameAborted = false;
 
         }
 
@@ -341,6 +342,7 @@ namespace WildWind.Systems
 
                         if (OnLevelCleared != null)
                             OnLevelCleared();
+                        gameState = GameState.None;
 
                     });
 

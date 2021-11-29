@@ -60,7 +60,6 @@ namespace WildWind.Core
                 Vector3 dir = transform.position - alertCenter.position;
                 dir = dir.normalized;
                 Vector2 line = new Vector2(dir.x, dir.z);
-                Debug.DrawLine(alertCenter.position, alertCenter.position + dir);
                 Vector2 position;
                 if (Mathf.Abs(line.x) / Camera.main.aspect < Mathf.Abs(line.y))
                 {
