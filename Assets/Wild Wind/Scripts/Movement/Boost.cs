@@ -7,9 +7,8 @@ namespace WildWind.Movement
 
     public class Boost : MonoBehaviourMaster<Boost>
     {
-
-        [SerializeField] float maxBoostTime = 10;
-        [SerializeField] float boostSpeedMultiplier;
+        [SerializeField] private float maxBoostTime = 10;
+        [SerializeField] private float boostSpeedMultiplier;
         private float defaultSpeed;
         private float _remainingTime = 0;
         private float remainingTime
@@ -31,6 +30,7 @@ namespace WildWind.Movement
 
         }
         private Mover mover;
+        private const string boosterTag = "Booster";
 
         public override void Start()
         {
@@ -39,20 +39,24 @@ namespace WildWind.Movement
             SetMover();
             GetMoverDefaultSpeed();          
 
-        }      
+        }
 
-        public override void Update()
+        public void Update()
         {
 
-            UpdateRemainingTime();
-            UpdateMover();
+            if (remainingTime != 0)
+            {
+                UpdateRemainingTime();
+                UpdateMover();
+            }
+
 
         }
         
         private void OnTriggerEnter(Collider other)
         {
             
-            if(other.tag == "Booster")
+            if(other.CompareTag(boosterTag))
             {
 
                 ResetTimer();

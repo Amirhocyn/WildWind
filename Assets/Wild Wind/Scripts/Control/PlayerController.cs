@@ -11,10 +11,13 @@ namespace WildWind.Control
 
     [System.Serializable]
 
-    public class PlayerController : MonoBehaviourMaster<PlayerController>
+    public class PlayerController : MonoBehaviourMaster<PlayerController>, IBuyable
     {
 
         Mover mover;
+
+        [SerializeField]private int _price;
+        public int price { get { return _price; } set { _price = value; } }
 
         public override void Start()
         {
@@ -24,10 +27,8 @@ namespace WildWind.Control
 
         }
 
-        public override void Update()
+        public void Update()
         {
-
-            base.Update();
 
             if (Application.platform == RuntimePlatform.WindowsEditor)
             {
@@ -45,6 +46,8 @@ namespace WildWind.Control
             {
 
                 mover.Turn(0);
+                if (Input.touchCount == 0)
+                    return;
 
                 if (Input.GetTouch(0).position.x > Screen.width / 2)
                     mover.Turn(1);
@@ -70,6 +73,15 @@ namespace WildWind.Control
 
         }
 
+        public bool Buy(ref int balance)
+        {
+
+            bool canBuy = balance >= price;
+            if (canBuy)
+                balance -= price;
+            return canBuy;
+
+        }
     }
 
 }

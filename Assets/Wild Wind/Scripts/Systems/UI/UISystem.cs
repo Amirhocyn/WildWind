@@ -4,6 +4,7 @@ using UnityEngine;
 
 using WildWind.Combat;
 using UnityEngine.UI;
+using System;
 
 namespace WildWind.Systems
 {
@@ -11,30 +12,34 @@ namespace WildWind.Systems
     public class UISystem : MonoSingleton<UISystem>
     {
 
-        [SerializeField] private GameObject gameMenu;
-        [SerializeField] private GameObject homeMenu;
-        [SerializeField] private GameObject pauseMenu;
-        [SerializeField] private GameObject finishedMenu;
-
         #region Game Menu
+        [SerializeField] private GameObject gameMenu;
         [SerializeField] Button pauseButton;
         [SerializeField] Text time;
         [SerializeField] Text score;
         #endregion
 
         #region Home Menu
+        [SerializeField] private GameObject homeMenu;
         [SerializeField] Button nextPlaneButton;
         [SerializeField] Button previousPlaneButton;
         [SerializeField] Button startGameButton;
+        [SerializeField] Button buyPlaneButton;
+        [SerializeField] Text balance;
         #endregion
 
         #region Pause Menu
+        [SerializeField] private GameObject pauseMenu;
         [SerializeField] Button playButton;
+        [SerializeField] Button settingsButton;
+        [SerializeField] Button goHomeButton;
         #endregion
 
         #region Finished Menu
+        [SerializeField] private GameObject finishedMenu;
         [SerializeField] Button playAgain;
         [SerializeField] Button homeButton;
+        #endregion
 
         public override void Awake()
         {
@@ -44,7 +49,6 @@ namespace WildWind.Systems
             GameSystem.Instance.OnGameStateChange += UpdateMenusStates;
 
         }
-        #endregion
 
         public override void Start()
         {
@@ -53,22 +57,29 @@ namespace WildWind.Systems
 
             #region Setup Home Menu
             nextPlaneButton.onClick.AddListener(GameSystem.Instance.NextPlane);
+            nextPlaneButton.onClick.AddListener(UpdateMenusStates);
             previousPlaneButton.onClick.AddListener(GameSystem.Instance.PreviousPlane);
+            previousPlaneButton.onClick.AddListener(UpdateMenusStates);
             startGameButton.onClick.AddListener(GameSystem.Instance.StartGameSession);
+            buyPlaneButton.onClick.AddListener(GameSystem.Instance.BuyPlane);
+            buyPlaneButton.onClick.AddListener(UpdateMenusStates);
             #endregion
 
             #region Setup Game Menu
-            pauseButton.onClick.AddListener(PauseAction);
+            pauseButton.onClick.AddListener(GameSystem.Instance.PauseGame);
             #endregion
 
             #region Setup Pause Menu
-            playButton.onClick.AddListener(PlayAction);
+            playButton.onClick.AddListener(GameSystem.Instance.ResumeGame);
+            goHomeButton.onClick.AddListener(GameSystem.Instance.AbortSession);
             #endregion
 
             #region Setup Finish Menu
             homeButton.onClick.AddListener(GameSystem.Instance.LoadHomeMenu);
             playAgain.onClick.AddListener(GameSystem.Instance.StartGameSession);
             #endregion
+
+            UpdateMenusStates();
 
             GameSystem.Instance.OnGameStart += (() =>
             {
@@ -78,35 +89,26 @@ namespace WildWind.Systems
 
         }
 
-        public override void Update()
+        public void Update()
         {
 
-            base.Update();
-
             score.text = ScoringSystem.Instance.score.ToString();
+            balance.text = SaveData.instance.balance.ToString();
+            if (GameSystem.Instance.gameState == GameSystem.GameState.Playing)
+                time.text = (int)(GameSystem.Instance.time / 60) + ":" + (int)((GameSystem.Instance.time % 60) / 10) + "" + (int)(GameSystem.Instance.time % 60) % 10;
 
         }
 
         private void UpdateMenusStates()
         {
+
             homeMenu.SetActive(GameSystem.Instance.gameState == GameSystem.GameState.Home);
             gameMenu.SetActive(GameSystem.Instance.gameState == GameSystem.GameState.Playing || GameSystem.Instance.gameState == GameSystem.GameState.Paused);
             pauseMenu.SetActive(GameSystem.Instance.gameState == GameSystem.GameState.Paused);
             finishedMenu.SetActive(GameSystem.Instance.gameState == GameSystem.GameState.Finished);
             pauseButton.gameObject.SetActive(GameSystem.Instance.gameState == GameSystem.GameState.Playing);
-        }
-
-        private void PlayAction()
-        {
-
-            GameSystem.Instance.ResumeGame();
-
-        }
-
-        private void PauseAction()
-        {
-
-            GameSystem.Instance.PauseGame();
+            startGameButton.gameObject.SetActive(SaveData.instance.unlockedPlanes.Contains(SaveData.instance.planeId));
+            buyPlaneButton.gameObject.SetActive(!SaveData.instance.unlockedPlanes.Contains(SaveData.instance.planeId));
 
         }
 

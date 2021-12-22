@@ -20,7 +20,7 @@ namespace WildWind.Movement
         private float rotationDirection = 0;
         private float delayedRotationDirection = 0;
 
-        public override void Update()
+        public void Update()
         {
 
             MoveForward();

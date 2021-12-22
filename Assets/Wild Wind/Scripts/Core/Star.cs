@@ -12,11 +12,6 @@ namespace WildWind.Core
             base.Awake();
         }
 
-        public override void LateUpdate()
-        {
-            base.LateUpdate();
-        }
-
         public override void OnDestroy()
         {
             base.OnDestroy();
@@ -30,11 +25,6 @@ namespace WildWind.Core
         public override void Start()
         {
             base.Start();
-        }
-
-        public override void Update()
-        {
-            base.Update();
         }
 
         private void OnTriggerEnter(Collider other)

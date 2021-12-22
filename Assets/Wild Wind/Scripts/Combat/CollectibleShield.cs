@@ -12,11 +12,6 @@ namespace WildWind.Combat
             base.Awake();
         }
 
-        public override void LateUpdate()
-        {
-            base.LateUpdate();
-        }
-
         public override void OnDestroy()
         {
             base.OnDestroy();
@@ -32,10 +27,6 @@ namespace WildWind.Combat
             base.Start();
         }
 
-        public override void Update()
-        {
-            base.Update();
-        }
     }
 
 }

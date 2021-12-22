@@ -1,10 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
-using WildWind.Control;
-using UnityFx.Async;
 using UnityEngine.UI;
 
 namespace WildWind.Systems
@@ -12,7 +7,7 @@ namespace WildWind.Systems
 
     public class ScoringSystem : MonoSingleton<ScoringSystem>
     {
-
+        
         [SerializeField] int timeScore;
         public float scoreMultiplier = 1;
         [SerializeField]
@@ -35,55 +30,59 @@ namespace WildWind.Systems
             }
 
         }
-        Coroutine timer;
+
+        private int rawScore { get; set; }
+        private Coroutine timer;
+        private float defaultScoreMultiplier = 1;
 
         public override void Start()
         {
 
             base.Start();
-
-            PlayerController.OnStartStatic += StartTimer;
-            PlayerController.OnDeathStatic += ResetScore;
-            PlayerController.OnDeathStatic += StopTimer;
+            defaultScoreMultiplier = scoreMultiplier;
+            GameSystem.Instance.OnGameStart += StartTimer;
+            GameSystem.Instance.OnFinished += StopTimer;
+            GameSystem.Instance.OnGameStateChange += (() =>
+            { 
+                if (GameSystem.Instance.gameState == GameSystem.GameState.Home)
+                    ResetScore();
+            });
+            GameSystem.Instance.OnLevelCleared+= ResetScore;
+            GameSystem.Instance.OnLevelCleared += () => scoreMultiplier = defaultScoreMultiplier;
+            GameSystem.Instance.OnFinished += RewardCoins;
 
         }
 
-        public override void Update()
-        {
-
-            base.Update();
-
-        }
-
-        public void ResetScore()
+        private void ResetScore()
         {
 
             score = 0;
 
         }
 
-        public void AddScore(int addScore)
+        internal void AddScore(int addScore)
         {
 
+            rawScore += addScore;
             score += (int)(addScore * scoreMultiplier);
 
         }
 
-        public void StartTimer()
+        private void StartTimer()
         {
 
             timer = StartCoroutine("Timer",timer);
 
         }
 
-        public void StopTimer()
+        private void StopTimer()
         {
 
             StopCoroutine(timer);
 
         }
 
-        public IEnumerator Timer()
+        private IEnumerator Timer()
         {
 
             while(true)
@@ -93,6 +92,13 @@ namespace WildWind.Systems
                 AddScore(timeScore);
 
             }
+
+        }
+
+        private void RewardCoins()
+        {
+
+            SaveData.instance.balance += (int)Mathf.Log(Mathf.Clamp(score, 1, Mathf.Infinity));
 
         }
 

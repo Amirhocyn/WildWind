@@ -59,18 +59,16 @@ namespace WildWind.Systems.Spawn
 
         }
 
-        public override void Update()
+        public void Update()
         {
-
-            base.Update();
 
             UpdateSpawnDirector();
 
-            if (GameSystem.Instance.player != null)
+            if (GameSystem.Instance.gameState == GameSystem.GameState.Playing)
             {
 
-                foreach (SpawnContainer a in spawnContainers)
-                    InstantiateObjects(a);
+                for (int j = 0; j < spawnContainers.Count; j++)
+                    InstantiateObjects(spawnContainers[j]);
 
             }
 
@@ -84,13 +82,13 @@ namespace WildWind.Systems.Spawn
 
                 List<int> chance = new List<int>();
 
-                foreach (SpawnObject b in spawnContainer.spawnObjects)
+                for (int j = 0;j < spawnContainer.spawnObjects.Count;j++)
                 {
 
                     if (chance.Count != 0)
-                        chance.Add(chance[chance.Count - 1] + b.chance);
+                        chance.Add(chance[chance.Count - 1] + spawnContainer.spawnObjects[j].chance);
                     else
-                        chance.Add(b.chance);
+                        chance.Add(spawnContainer.spawnObjects[j].chance);
 
                 }
 
@@ -198,11 +196,6 @@ namespace WildWind.Systems.Spawn
 
             activeStars--;
 
-        }
-
-        public override void LateUpdate()
-        {
-            base.LateUpdate();
         }
 
         public override void OnDestroy()

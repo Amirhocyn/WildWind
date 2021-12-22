@@ -7,29 +7,14 @@ namespace UnityEngine
 
     public class EventHandler : MonoBehaviourMaster<EventHandler>
     {
+
         public override void Awake()
         {
             base.Awake();
         }
-
-        public override bool Equals(object other)
+        public override void Start()
         {
-            return base.Equals(other);
-        }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
-        public override void LateUpdate()
-        {
-            base.LateUpdate();
-        }
-
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
+            base.Start();
         }
 
         public override void OnEnable()
@@ -37,20 +22,11 @@ namespace UnityEngine
             base.OnEnable();
         }
 
-        public override void Start()
+        public override void OnDestroy()
         {
-            base.Start();
+            base.OnDestroy();
         }
 
-        public override string ToString()
-        {
-            return base.ToString();
-        }
-
-        public override void Update()
-        {
-            base.Update();
-        }
     }
 
 }

@@ -82,6 +82,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.mobile.android-logcat": {
+      "version": "1.2.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.postprocessing": {
       "version": "3.1.1",
       "depth": 0,
@@ -214,12 +221,6 @@
         "com.unity.modules.physics2d": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "com.unityfx.async": {
-      "version": "file:F:/Unity Projects/WildWind/UnityFx.Async-master/unity/Npm/Assets/Plugins/UnityFx.Async",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

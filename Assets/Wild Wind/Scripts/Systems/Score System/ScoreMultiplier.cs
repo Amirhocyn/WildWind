@@ -51,10 +51,9 @@ namespace WildWind.Systems
 
         }
 
-        public override void Update()
+        public void Update()
         {
 
-            base.Update();
             UpdateRemainingTime();
             UpdateScoreMultiplier();
 
@@ -71,13 +70,6 @@ namespace WildWind.Systems
                 ScoringSystem.Instance.scoreMultiplier = defaultScoreMultiplier * 2;
 
             }
-
-        }
-
-        public override void LateUpdate()
-        {
-
-            base.LateUpdate();
 
         }
 
