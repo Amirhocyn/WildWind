@@ -1,7 +1,8 @@
-using System.Collections.Generic;
-using UnityEngine;
 using System;
-using UnityFx.Async;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+//using System.Threading.Tasks;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace WildWind.Systems.Spawn
@@ -95,12 +96,12 @@ namespace WildWind.Systems.Spawn
                 if (limitCap != maxActiveObjects && GameSystem.Instance.gameState == GameSystem.GameState.Playing)
                 {
 
-                    await AsyncResult.Delay(Random.Range(timeRange.x, timeRange.y));
+                    await Task.Delay((int)Random.Range(timeRange.x, timeRange.y) * 1000);
                     limitCap = Mathf.Clamp(limitCap + 1, 0, maxActiveObjects);
 
                 }
                 else
-                    await AsyncResult.Delay(0.1f);
+                    await Task.Delay(100);
 
             }
 

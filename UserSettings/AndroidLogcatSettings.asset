@@ -1,43 +1,13 @@
 {
-    "m_SelectedDeviceId": "R5CR81S0LLJ",
+    "m_SelectedDeviceId": "ce6f92c3",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "ce6f92c3",
+        "name": "com.Kourosh.WildWind",
+        "processId": 21178,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "ce6f92c3",
-            "name": "net.oneplus.launcher",
-            "processId": 25642,
-            "exited": false
-        },
-        {
-            "deviceId": "ce6f92c3",
-            "name": "com.Kourosh.WildWind",
-            "processId": 28538,
-            "exited": true
-        },
-        {
-            "deviceId": "ce6f92c3",
-            "name": "com.Kourosh.WildWind",
-            "processId": 28540,
-            "exited": true
-        },
-        {
-            "deviceId": "ce6f92c3",
-            "name": "com.Kourosh.WildWind",
-            "processId": 31115,
-            "exited": true
-        },
-        {
-            "deviceId": "ce6f92c3",
-            "name": "com.Kourosh.WildWind",
-            "processId": 31119,
-            "exited": true
-        },
         {
             "deviceId": "ce6f92c3",
             "name": "com.Kourosh.WildWind",
@@ -48,24 +18,48 @@
             "deviceId": "ce6f92c3",
             "name": "com.android.chrome",
             "processId": 20756,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "ce6f92c3",
             "name": "com.Kourosh.WildWind",
             "processId": 2763,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "ce6f92c3",
             "name": "com.Kourosh.WildWind",
             "processId": 3649,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "ce6f92c3",
             "name": "com.Kourosh.WildWind",
             "processId": 5133,
+            "exited": true
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "net.oneplus.launcher",
+            "processId": 31533,
+            "exited": false
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "org.telegram.messenger",
+            "processId": 18165,
+            "exited": false
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "com.instagram.android",
+            "processId": 16273,
+            "exited": false
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "com.Kourosh.WildWind",
+            "processId": 21178,
             "exited": false
         },
         {

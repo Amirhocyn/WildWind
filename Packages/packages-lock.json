@@ -222,12 +222,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unityfx.async": {
-      "version": "file:F:/Unity Projects/WildWind/UnityFx.Async-master/unity/Npm/Assets/Plugins/UnityFx.Async",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

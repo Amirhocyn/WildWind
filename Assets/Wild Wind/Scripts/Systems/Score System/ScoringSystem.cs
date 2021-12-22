@@ -1,10 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
-using WildWind.Control;
-using UnityFx.Async;
 using UnityEngine.UI;
 
 namespace WildWind.Systems

@@ -1,15 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityFx.Async;
 using WildWind.Control;
 using WildWind.Core;
 using WildWind.Movement;
-using Random = UnityEngine.Random;
 
 namespace WildWind.Systems
 {
