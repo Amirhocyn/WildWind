@@ -7,10 +7,9 @@ namespace WildWind.Movement
 
     public class Boost : MonoBehaviourMaster<Boost>
     {
-
-        [SerializeField] float maxBoostTime = 10;
-        [SerializeField] float boostSpeedMultiplier;
-        private float baseSpeed;
+        [SerializeField] private float maxBoostTime = 10;
+        [SerializeField] private float boostSpeedMultiplier;
+        private float defaultSpeed;
         private float _remainingTime = 0;
         private float remainingTime
         {
@@ -31,27 +30,33 @@ namespace WildWind.Movement
 
         }
         private Mover mover;
+        private const string boosterTag = "Booster";
 
         public override void Start()
         {
 
+            base.Start();
             SetMover();
-            GetMoverNormalSpeed();          
+            GetMoverDefaultSpeed();          
 
-        }      
+        }
 
-        public override void Update()
+        public void Update()
         {
 
-            UpdateRemainingTime();
-            UpdateMover();
+            if (remainingTime != 0)
+            {
+                UpdateRemainingTime();
+                UpdateMover();
+            }
+
 
         }
         
         private void OnTriggerEnter(Collider other)
         {
             
-            if(other.tag == "Booster")
+            if(other.CompareTag(boosterTag))
             {
 
                 ResetTimer();
@@ -59,6 +64,11 @@ namespace WildWind.Movement
 
             }
 
+        }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
         }
 
         void ResetTimer()
@@ -73,22 +83,24 @@ namespace WildWind.Movement
             mover = GetComponent<Mover>();
         }
 
-        void GetMoverNormalSpeed()
+        void GetMoverDefaultSpeed()
         {
-            baseSpeed = mover.GetSpeed();
+
+            defaultSpeed = mover.GetSpeed();
+
         }
 
         private void ResetMoverSpeed()
         {
 
-            mover.SetSpeed(baseSpeed);
+            mover.SetSpeed(defaultSpeed);
 
         }
 
         void BoostMover()
         {
 
-            mover.SetSpeed(baseSpeed * boostSpeedMultiplier);
+            mover.SetSpeed(defaultSpeed * boostSpeedMultiplier);
 
         }
 

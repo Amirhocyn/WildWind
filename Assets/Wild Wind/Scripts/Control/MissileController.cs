@@ -11,32 +11,44 @@ namespace WildWind.Control
     public class MissileController : MonoBehaviourMaster<MissileController>
     {
 
-        Transform target;
-        Mover mover;
+        private Transform target;
+        private Mover mover;
         [SerializeField] float lifeTime = 30;
         public static Action onDestroy;
+        private float delayedSteering = 0;
+        private float angleBetween = 0;
 
         public override void Start()
         {
 
+            base.Start();
             SetTarget();
             SetMover();
             StartCoroutine(WaitForEndOfLife());
+            StartCoroutine(UpdateSteering());
 
         }
 
-        public override void Update()
+        public void Update()
         {
 
             if (target != null)
             {
 
-                float angleBetween = GetAngleBetweenMissileAndTarget();
+                angleBetween = GetAngleBetweenMissileAndTarget();
+                angleBetween = Mathf.Clamp(angleBetween * 3f / mover.GetTurnAngle(), -1, 1);
                 InteractWithMover(angleBetween);
+
+            }
+            else
+            {
+
+                InteractWithMover(0);
 
             }
 
         }
+
         IEnumerator WaitForEndOfLife()
         {
 
@@ -48,7 +60,7 @@ namespace WildWind.Control
         private void InteractWithMover(float angleBetween)
         {
 
-            mover.Turn(Mathf.Clamp(angleBetween * 3 / mover.GetTurnAngle(), -1, 1));
+            mover.Turn(angleBetween);
 
         }
 
@@ -69,7 +81,8 @@ namespace WildWind.Control
         private void SetTarget()
         {
 
-            target = FindObjectOfType<PlayerController>().transform;
+            if (FindObjectOfType<PlayerController>() != null)
+                target = FindObjectOfType<PlayerController>().transform;
 
         }
 
@@ -77,8 +90,29 @@ namespace WildWind.Control
         public override void OnDestroy()
         {
 
+            base.OnDestroy();
             if (onDestroy != null)
                 onDestroy();
+
+        }
+
+        IEnumerator UpdateSteering()
+        {
+
+            while (true)
+            {
+
+                yield return new WaitForSeconds(0.01f);
+
+                if (Mathf.Abs(Mathf.Abs(delayedSteering) - Mathf.Abs(angleBetween)) < 0.01f)
+                    delayedSteering = angleBetween;
+
+                if (delayedSteering < angleBetween)
+                    delayedSteering += 0.01f;
+                if (delayedSteering > angleBetween)
+                    delayedSteering -= 0.01f;
+
+            }
 
         }
 

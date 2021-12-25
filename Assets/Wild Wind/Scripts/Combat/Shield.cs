@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace WildWind.Combat
 {
 
     public class Shield : MonoBehaviourMaster<Shield>
     {
-
+        [SerializeField]Image shieldImg;
         private int _shields = 0;
         int shields
         {
@@ -22,25 +23,32 @@ namespace WildWind.Combat
             set
             {
 
-                _shields = Mathf.Clamp(value, 0,3);
+                _shields = Mathf.Clamp(value, 0,20);
+                InteractWithCombat();
+                if (_shields != 0)
+                    shieldImg.gameObject.SetActive(true);
+                else
+                    shieldImg.gameObject.SetActive(false);
 
             }
 
         }
 
-        public override void Update()
+        public override void Start()
         {
-
-            base.Update();
-
+            base.Start();
         }
 
         private void OnTriggerEnter(Collider other)
         {
 
             InteractWithObject(other.gameObject);
-            InteractWithCombat();
 
+        }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
         }
 
         private void InteractWithObject(GameObject other)

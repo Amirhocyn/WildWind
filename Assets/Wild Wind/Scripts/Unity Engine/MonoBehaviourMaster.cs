@@ -66,7 +66,7 @@ namespace UnityEngine
         }
 
 
-        public virtual void Update()
+        /*public virtual void Update()
         {
 
             if (OnTick != null)
@@ -84,7 +84,7 @@ namespace UnityEngine
             if (OnTickLateStatic != null)
                 OnTickLateStatic();
 
-        }
+        }*/
 
         public virtual void OnDestroy()
         {

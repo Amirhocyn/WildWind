@@ -5,8 +5,27 @@ using UnityEngine;
 namespace WildWind.Core
 {
 
-    public class Star : MonoBehaviour
+    public class Star : MonoBehaviourMaster<Star>
     {
+        public override void Awake()
+        {
+            base.Awake();
+        }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
+        public override void OnEnable()
+        {
+            base.OnEnable();
+        }
+
+        public override void Start()
+        {
+            base.Start();
+        }
 
         private void OnTriggerEnter(Collider other)
         {

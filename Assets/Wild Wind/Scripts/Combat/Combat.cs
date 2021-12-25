@@ -9,13 +9,7 @@ namespace WildWind.Combat
     public class Combat : MonoBehaviourMaster<Combat>
     {
 
-        bool destructible = true;
-        public override void Start()
-        {
-            
-
-
-        }
+        private bool destructible { get; set; } = true;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -26,12 +20,14 @@ namespace WildWind.Combat
 
         private void InteractWithObject(GameObject other)
         {
-            if (destructible && (other.tag == "Player" || other.tag == "Missile"))
+
+            if (destructible && ((other.tag == "Player" && this.tag != "Player") || other.tag == "Missile"))
             {
 
                 Destroy(gameObject);
 
             }
+
         }
 
         public void SetDestructible(bool destructible)

@@ -1,0 +1,143 @@
+{
+    "m_SelectedDeviceId": "ce6f92c3",
+    "m_SelectedPackage": {
+        "deviceId": "ce6f92c3",
+        "name": "com.Kourosh.WildWind",
+        "processId": 21178,
+        "exited": false
+    },
+    "m_SelectedPriority": 0,
+    "m_KnownPackagesForSerialization": [
+        {
+            "deviceId": "ce6f92c3",
+            "name": "com.Kourosh.WildWind",
+            "processId": 32596,
+            "exited": true
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "com.android.chrome",
+            "processId": 20756,
+            "exited": true
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "com.Kourosh.WildWind",
+            "processId": 2763,
+            "exited": true
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "com.Kourosh.WildWind",
+            "processId": 3649,
+            "exited": true
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "com.Kourosh.WildWind",
+            "processId": 5133,
+            "exited": true
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "net.oneplus.launcher",
+            "processId": 31533,
+            "exited": false
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "org.telegram.messenger",
+            "processId": 18165,
+            "exited": false
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "com.instagram.android",
+            "processId": 16273,
+            "exited": false
+        },
+        {
+            "deviceId": "ce6f92c3",
+            "name": "com.Kourosh.WildWind",
+            "processId": 21178,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CR81S0LLJ",
+            "name": "com.Kourosh.WildWind",
+            "processId": 5935,
+            "exited": true
+        },
+        {
+            "deviceId": "R5CR81S0LLJ",
+            "name": "com.google.android.play.games",
+            "processId": 3075,
+            "exited": true
+        },
+        {
+            "deviceId": "R5CR81S0LLJ",
+            "name": "com.Kourosh.WildWind",
+            "processId": 10393,
+            "exited": true
+        },
+        {
+            "deviceId": "R5CR81S0LLJ",
+            "name": "com.Kourosh.WildWind",
+            "processId": 13634,
+            "exited": true
+        }
+    ],
+    "m_Tags": {
+        "m_Entries": [
+            {
+                "m_Name": "Filter by all listed tags",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "No Filter",
+                "m_Selected": true
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Tag Control...",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Unity",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "CRASH",
+                "m_Selected": false
+            }
+        ]
+    },
+    "m_MemoryViewerState": {
+        "MemoryWindowHeight": 255.0,
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "MemoryGroup": 2,
+        "Behavior": 2
+    },
+    "m_Filter": "",
+    "m_FilterIsRegularExpression": false,
+    "m_SymbolPaths": []
+}
