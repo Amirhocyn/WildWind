@@ -165,8 +165,12 @@ PrefabInstance:
       value: P_Missile_02
       objectReference: {fileID: 0}
     - target: {fileID: 6447446174411090965, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
+      propertyPath: speed
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447446174411090965, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: maxTurnAngle
-      value: 360
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6447446174411090965, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: turningSpeed
@@ -179,6 +183,10 @@ PrefabInstance:
     - target: {fileID: 6447446174411090965, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: smoothedSteeringMultiplier
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447446174411090966, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
+      propertyPath: lifeTime
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8578338988603779180, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: m_AngularDrag
