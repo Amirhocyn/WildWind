@@ -8,37 +8,60 @@ using System;
 
 namespace WildWind.Systems
 {
-
+    [Serializable]
     public class UISystem : MonoSingleton<UISystem>
     {
 
-        #region Game Menu
-        [SerializeField] private GameObject gameMenu;
-        [SerializeField] Button pauseButton;
-        [SerializeField] Text time;
-        [SerializeField] Text score;
-        #endregion
-
+        [Header("Home Menu"), Space(10)]
         #region Home Menu
         [SerializeField] private GameObject homeMenu;
         [SerializeField] Button nextPlaneButton;
         [SerializeField] Button previousPlaneButton;
         [SerializeField] Button startGameButton;
         [SerializeField] Button buyPlaneButton;
+        [SerializeField] Button settingButton;
         [SerializeField] Text balance;
         #endregion
+        [Space(20)]
 
+        [Header("Game Menu"),Space(10)]
+        #region Game Menu
+        [SerializeField] private GameObject gameMenu;
+        [SerializeField] Button pauseButton;
+        [SerializeField] Text time;
+        [SerializeField] Text score;
+        #endregion
+        [Space(20)]
+
+        [Header("Pause Menu"), Space(10)]
         #region Pause Menu
         [SerializeField] private GameObject pauseMenu;
         [SerializeField] Button playButton;
         [SerializeField] Button settingsButton;
         [SerializeField] Button goHomeButton;
         #endregion
+        [Space(20)]
 
+        [Header("Finished Menu"), Space(10)]
         #region Finished Menu
         [SerializeField] private GameObject finishedMenu;
         [SerializeField] Button playAgain;
         [SerializeField] Button homeButton;
+        #endregion
+        [Space(20)]
+
+        [Header("Settings Menu"), Space(10)]
+        #region Settings Menu
+        [SerializeField] private GameObject settingsMenu;
+        [SerializeField] Button closeSettingButton;
+        [SerializeField] Button tutorialButton;
+        #endregion
+        [Space(20)]
+
+        [Header("Tutorial Menu"), Space(10)]
+        #region Settings Menu
+        [SerializeField] private GameObject tutorialMenu;
+        [SerializeField] Button closeTutorialButton;
         #endregion
 
         public override void Awake()
@@ -63,6 +86,7 @@ namespace WildWind.Systems
             startGameButton.onClick.AddListener(GameSystem.Instance.StartGameSession);
             buyPlaneButton.onClick.AddListener(GameSystem.Instance.BuyPlane);
             buyPlaneButton.onClick.AddListener(UpdateMenusStates);
+            settingButton.onClick.AddListener(() => settingsMenu.SetActive(true));
             #endregion
 
             #region Setup Game Menu
@@ -72,11 +96,21 @@ namespace WildWind.Systems
             #region Setup Pause Menu
             playButton.onClick.AddListener(GameSystem.Instance.ResumeGame);
             goHomeButton.onClick.AddListener(GameSystem.Instance.AbortSession);
+            settingsButton.onClick.AddListener(() => settingsMenu.SetActive(true));
             #endregion
 
             #region Setup Finish Menu
             homeButton.onClick.AddListener(GameSystem.Instance.LoadHomeMenu);
             playAgain.onClick.AddListener(GameSystem.Instance.StartGameSession);
+            #endregion
+
+            #region Setup Settings Menu
+            closeSettingButton.onClick.AddListener(() => settingsMenu.SetActive(false));
+            tutorialButton.onClick.AddListener(() => tutorialMenu.SetActive(true));
+            #endregion
+
+            #region Setup Tutorial Menu
+            closeTutorialButton.onClick.AddListener(() => tutorialMenu.SetActive(false));
             #endregion
 
             UpdateMenusStates();
