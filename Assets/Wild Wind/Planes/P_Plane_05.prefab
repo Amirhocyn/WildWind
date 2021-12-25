@@ -445,7 +445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4146388946755377883, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: maxTurnAngle
-      value: 360
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 4146388946755377883, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: turningSpeed
@@ -514,6 +514,10 @@ PrefabInstance:
     - target: {fileID: 4146388946755377887, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999040892607279177, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4146388946755377881, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
