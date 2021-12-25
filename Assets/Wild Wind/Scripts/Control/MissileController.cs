@@ -11,8 +11,8 @@ namespace WildWind.Control
     public class MissileController : MonoBehaviourMaster<MissileController>
     {
 
-        Transform target;
-        Mover mover;
+        private Transform target;
+        private Mover mover;
         [SerializeField] float lifeTime = 30;
         public static Action onDestroy;
         private float delayedSteering = 0;
@@ -38,6 +38,12 @@ namespace WildWind.Control
                 angleBetween = GetAngleBetweenMissileAndTarget();
                 angleBetween = Mathf.Clamp(angleBetween * 3f / mover.GetTurnAngle(), -1, 1);
                 InteractWithMover(angleBetween);
+
+            }
+            else
+            {
+
+                InteractWithMover(0);
 
             }
 

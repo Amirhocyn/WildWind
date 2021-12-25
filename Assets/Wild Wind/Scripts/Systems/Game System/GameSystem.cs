@@ -122,6 +122,12 @@ namespace WildWind.Systems
                     {
 
                         time += Time.deltaTime;
+                        if (FindObjectOfType<CloudsControl>() != null)
+                        {
+
+                            FindObjectOfType<CloudsControl>().SetCenterOfSpawn(player.transform.position);
+
+                        }
                         break;
 
                     }
@@ -178,19 +184,6 @@ namespace WildWind.Systems
             SetupCamera();
             SetPlayerAsAlertCenter();
             player.OnDeath += HandleOnGameFinish;
-
-            //set the player as the spawn center of clouds
-            player.OnStart += (() =>
-            {
-
-                if (FindObjectOfType<CloudsControl>() != null)
-                {
-
-                    FindObjectOfType<CloudsControl>().SetCenterOfSpawn(player.transform.position);
-
-                }
-
-            });
 
         }
 
@@ -400,6 +393,7 @@ namespace WildWind.Systems
             plane.GetComponent<PlayerController>().enabled = false;
             plane.GetComponent<Mover>().enabled = false;
             plane.GetComponent<Combat.Combat>().enabled = false;
+            plane.transform.position = Vector3.zero;
 
         }
         #endregion

@@ -24,7 +24,7 @@ namespace WildWind.Core
 
             base.Start();
 
-            canvas = FindObjectOfType<Canvas>();
+            canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             alertUI = Instantiate(alertUI, canvas.transform);
             alertUI.SetActive(false);
             alertUIRect = alertUI.GetComponent<RectTransform>();
