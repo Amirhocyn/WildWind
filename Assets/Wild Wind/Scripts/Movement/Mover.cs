@@ -10,7 +10,6 @@ namespace WildWind.Movement
     public class Mover : MonoBehaviourMaster<Mover>
     {
 
-        [SerializeField] float turningSpeed;
         [SerializeField] float maxTurnAngle;
         [SerializeField] float speed;
         [SerializeField] Transform mesh;

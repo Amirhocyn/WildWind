@@ -40,9 +40,9 @@ TrailRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1851279833}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
@@ -52,7 +52,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: baf7211705a47a34f9a5200899b76942, type: 2}
+  - {fileID: 2100000, guid: b27be6e3b07edee41a600e4aed0b721f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73,7 +73,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 120
+  m_Time: 5
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -81,8 +81,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.008319028
+        time: 0.33895493
+        value: 0.037310727
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -94,8 +94,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.8867924, g: 0.28862584, b: 0.28862584, a: 1}
-      key1: {r: 0.8862746, g: 0.2901961, b: 0.2901961, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -121,8 +121,8 @@ TrailRenderer:
       m_Mode: 1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 30
+    numCapVertices: 30
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -240,9 +240,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e140d2761443244bbdea1e7103014f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnAngle: 180
+  turningSpeed: 0
+  maxTurnAngle: 0
   speed: 25
   mesh: {fileID: 0}
+  smoothedSteeringMultiplier: 0
+  minimumLerpMultiplier: 0
 --- !u!114 &6447446174411090963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Renderer: {fileID: 0}
   alertUI: {fileID: 3357397400323699434, guid: 5022aaf87e2866040a2e5d32f30c14cc, type: 3}
+  alertOffset: {x: 0, y: 0}
 --- !u!114 &3249113298882210825
 MonoBehaviour:
   m_ObjectHideFlags: 0

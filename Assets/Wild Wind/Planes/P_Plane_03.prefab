@@ -457,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4146388946755377883, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: minimumLerpMultiplier
-      value: 83
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4146388946755377883, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: smoothedSteeringMultiplier

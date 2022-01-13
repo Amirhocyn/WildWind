@@ -25,7 +25,7 @@ namespace WildWind.Combat
 
                 _shields = Mathf.Clamp(value, 0,20);
                 InteractWithCombat();
-                if (_shields != 0)
+                if (_shields >= 1)
                     shieldImg.gameObject.SetActive(true);
                 else
                     shieldImg.gameObject.SetActive(false);
