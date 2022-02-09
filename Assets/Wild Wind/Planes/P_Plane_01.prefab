@@ -290,6 +290,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Plane_01
       objectReference: {fileID: 0}
+    - target: {fileID: 4146388946755377874, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4146388946755377883, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: mesh
       value: 
@@ -297,6 +301,14 @@ PrefabInstance:
     - target: {fileID: 4146388946755377883, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: speed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146388946755377883, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: _speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146388946755377883, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4146388946755377883, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: maxTurnAngle
@@ -314,6 +326,22 @@ PrefabInstance:
       propertyPath: smoothedSteeringMultiplier
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 4146388946755377886, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: _mover
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a9f6efef406fb24994385f3e79fa238, type: 2}
+    - target: {fileID: 4146388946755377886, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: _moverT
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146388946755377886, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: moverData
+      value: 
+      objectReference: {fileID: 11400000, guid: fe94a779a6cfb224abb0c80877248400, type: 2}
+    - target: {fileID: 4146388946755377886, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: _moverType
+      value: 
+      objectReference: {fileID: 11400000, guid: 122ddbd67bad745499c564818ab248c4, type: 2}
     - target: {fileID: 4146388946755377887, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: m_RootOrder
       value: 0

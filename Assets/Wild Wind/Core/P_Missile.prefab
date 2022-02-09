@@ -171,7 +171,6 @@ GameObject:
   - component: {fileID: 6447446174411090962}
   - component: {fileID: 8578338988603779180}
   - component: {fileID: 6447446174411090966}
-  - component: {fileID: 6447446174411090965}
   - component: {fileID: 6447446174411090963}
   - component: {fileID: 5724403050973038611}
   - component: {fileID: -3097157006259306179}
@@ -227,25 +226,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611244ad6ec1b9f4cb5fd32f323cfeaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moverData: {fileID: 0}
+  _moverType: {fileID: 0}
   lifeTime: 30
---- !u!114 &6447446174411090965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6447446174411090964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e140d2761443244bbdea1e7103014f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turningSpeed: 0
-  maxTurnAngle: 0
-  speed: 25
-  mesh: {fileID: 0}
-  smoothedSteeringMultiplier: 0
-  minimumLerpMultiplier: 0
 --- !u!114 &6447446174411090963
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: Powerups Container
   m_EditorClassIdentifier: 
   spawnObjects:
-  - gameObject: {fileID: 4853375499672253821, guid: cecd85947c83bae44a659648e5fd8927, type: 3}
-    chance: 100
-  - gameObject: {fileID: 8648905410912876425, guid: 86ef9de77464dc9419bb81db84800ce0, type: 3}
-    chance: 100
   - gameObject: {fileID: 8648905410912876425, guid: dc5677875d4dd1e4db4021160460729f, type: 3}
     chance: 100
   canAdd: 1

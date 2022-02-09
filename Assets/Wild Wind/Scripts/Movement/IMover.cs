@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace WildWind.Movement
 {
-
+    
     public interface IMover
     {
 
-        public float Speed { get; set; }
+        public void Execute(MoverData moverData,Transform transform,float direction);
 
     }
 

@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 8452756891458025219}
   - component: {fileID: -4177425417329514800}
   - component: {fileID: 2816667913775815682}
+  - component: {fileID: 1903101207758638001}
   m_Layer: 0
   m_Name: P_Booster
   m_TagString: Booster
@@ -158,3 +159,17 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1903101207758638001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8648905410912876425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5337d86976f8d874a9047831da814605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boosterTime: 5
+  boosterMultiplication: 1.5

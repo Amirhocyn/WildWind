@@ -391,7 +391,6 @@ namespace WildWind.Systems
                 Destroy(plane.gameObject);
             plane = Instantiate(GetPlanes()[SaveData.instance.planeId]);
             plane.GetComponent<PlayerController>().enabled = false;
-            plane.GetComponent<Mover>().enabled = false;
             plane.GetComponent<Combat.Combat>().enabled = false;
             plane.transform.position = Vector3.zero;
 

@@ -5,6 +5,7 @@ using UnityEngine;
 using WildWind.Movement;
 using WildWind.Core;
 using UnityEngine.Playables;
+using UnityEditor;
 
 namespace WildWind.Control
 {
@@ -14,16 +15,35 @@ namespace WildWind.Control
     public class PlayerController : MonoBehaviourMaster<PlayerController>, IBuyable
     {
 
-        Mover mover;
+        [SerializeField] public MoverData moverData;
+
+        [SerializeField] private ObjectType _moverType;
+        private IMover _mover;
+        public IMover mover
+        {
+            get
+            {
+
+                if (_mover == null)
+                    _mover = Activator.CreateInstance(_moverType.type) as IMover;
+
+                return _mover;
+
+            }
+            set
+            {
+                _mover = value as IMover;
+            }
+        }
 
         [SerializeField]private int _price;
         public int price { get { return _price; } set { _price = value; } }
 
+
         public override void Start()
         {
-
+            Debug.LogWarning(_moverType.type);
             base.Start();
-            SetMover();
 
         }
 
@@ -33,43 +53,35 @@ namespace WildWind.Control
             if (Application.platform == RuntimePlatform.WindowsEditor)
             {
 
-                mover.Turn(0);
 
                 if ((Input.mousePosition.x > Screen.width / 2 && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.RightArrow))
-                    mover.Turn(1);
+                {
+                    mover.Execute(moverData, transform, 1f);
+                    return;
+                }
                 if ((Input.mousePosition.x < Screen.width / 2 && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.LeftArrow))
-                    mover.Turn(-1);
+                {
+                    mover.Execute(moverData, transform, -1f);
+                    return;
+                }
+
+                mover.Execute(moverData, transform, 0f);
 
             }
 
             if (Application.platform == RuntimePlatform.Android)
             {
 
-                mover.Turn(0);
+                mover.Execute(moverData, transform, 0f);
                 if (Input.touchCount == 0)
                     return;
 
                 if (Input.GetTouch(0).position.x > Screen.width / 2)
-                    mover.Turn(1);
+                    mover.Execute(moverData, transform, 1f);
                 if (Input.GetTouch(0).position.x < Screen.width / 2)
-                    mover.Turn(-1);
+                    mover.Execute(moverData, transform, -1f);
 
             }
-
-        }
-
-        private void SetMover()
-        {
-
-            mover = GetComponent<Mover>();
-
-        }
-
-        public override void OnDestroy()
-        {
-
-            if (base.OnDeath != null)
-                base.OnDestroy();
 
         }
 
@@ -82,6 +94,14 @@ namespace WildWind.Control
             return canBuy;
 
         }
+
+        public MoverData GetMoverData()
+        {
+
+            return moverData;
+
+        }
+
     }
 
 }
