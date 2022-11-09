@@ -120,6 +120,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -904,6 +905,39 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      T_Explotion_21: 4165537248279899557
+      T_Explotion_25: 8580138659552192189
+      T_Explotion_3: 2468748040825012562
+      T_Explotion_5: 7984787948546245241
+      T_Explotion_24: 8890089503456322237
+      T_Explotion_13: -8316273207950098936
+      T_Explotion_26: 6941940061585894206
+      T_Explotion_29: -1157713444966180749
+      T_Explotion_8: 1839826095098712909
+      T_Explotion_0: -6640952190170897115
+      T_Explotion_14: 401296940211865113
+      T_Explotion_31: -2271789595194256607
+      T_Explotion_9: -842120925441949813
+      T_Explotion_15: -4940100657388415789
+      T_Explotion_1: -8950252087621502706
+      T_Explotion_19: -1620900075315314100
+      T_Explotion_20: -6729142743342442869
+      T_Explotion_12: -2150935680827441647
+      T_Explotion_4: 8569240415272086535
+      T_Explotion_22: -6943404521520609237
+      T_Explotion_16: -1699454000068847027
+      T_Explotion_23: 4574207536325390585
+      T_Explotion_28: 951720672679425632
+      T_Explotion_6: -6202865464183678906
+      T_Explotion_7: -8675276935381734071
+      T_Explotion_30: -2748057791387436625
+      T_Explotion_10: 2747419177758340426
+      T_Explotion_11: -1594835996160547793
+      T_Explotion_2: -4386833101132146631
+      T_Explotion_18: 2736109428458143451
+      T_Explotion_27: -2277077193271904695
+      T_Explotion_17: 3484610326375733893
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

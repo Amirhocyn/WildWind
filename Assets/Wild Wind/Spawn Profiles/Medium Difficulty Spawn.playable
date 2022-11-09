@@ -24,7 +24,7 @@ MonoBehaviour:
       chance: 0
     - gameObject: {fileID: 8047277415103914629, guid: 99cfe1ec27b147c46b9b27e01bfef23c, type: 3}
       chance: 0
-    maxActiveObjects: 0
+    maxActiveObjects: 2
     TimeRange: {x: 1, y: 4}
 --- !u!114 &-9179919023156326016
 MonoBehaviour:

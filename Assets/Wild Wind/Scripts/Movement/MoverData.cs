@@ -36,7 +36,7 @@ namespace WildWind.Movement
 
     }
 
-    struct ObjectPointer<T> where T: unmanaged
+    /*struct ObjectPointer<T> where T: unmanaged
     {
 
         public T Pointer { get; set; }
@@ -48,6 +48,6 @@ namespace WildWind.Movement
 
         }
 
-    }
+    }*/
 
 }

@@ -27,7 +27,7 @@ namespace WildWind.Systems
         }
 
         [SerializeField] float maxMultplierTime;
-        private float defaultScoreMultiplier = 1;
+        private int defaultScoreMultiplier = 1;
 
         public override void Awake()
         {

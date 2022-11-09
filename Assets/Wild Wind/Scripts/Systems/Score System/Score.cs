@@ -9,7 +9,7 @@ namespace WildWind.Systems
     public class Score : MonoBehaviourMaster<Score>
     {
 
-        [SerializeField] int score;
+        [SerializeField] private int score;
 
         public override void Awake()
         {

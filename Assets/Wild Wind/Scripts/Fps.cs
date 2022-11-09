@@ -12,12 +12,12 @@ public class Fps : MonoBehaviour
 	
 	void Start ()
 	{
-		
-
+	
+	
 
 	}
 
-    private void Update()
+	private void Update()
     {
 
 		times.Add(Time.deltaTime);

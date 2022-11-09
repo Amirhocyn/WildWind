@@ -38,9 +38,9 @@ namespace WildWind.Core
             {
                 await Task.Run(() =>
                 {
-                    while (!violationCondition())
+                    while (!(violationCondition() || token.IsCancellationRequested))
                     {
-                        if (token.IsCancellationRequested) break;
+                        //if (token.IsCancellationRequested) break;
                     }
                 });
             }
@@ -58,14 +58,6 @@ namespace WildWind.Core
             T originalHelper = (T)((object)originalObject());
             originalObject() = (T)((object)alternativeObject());
             alternativeObject() = originalHelper;
-
-        }
-
-        public void ManualCancel()
-        {
-
-            CancellationTokenSource.Cancel();
-            CancellationTokenSource.Dispose();
 
         }
 

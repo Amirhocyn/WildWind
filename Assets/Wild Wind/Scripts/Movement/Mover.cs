@@ -15,15 +15,15 @@ namespace WildWind.Movement
 
         public void Execute(MoverData moverData, Transform transform, float direction)
         {
-            UpdateAileronsState(moverData, direction, transform);
+            UpdateAileronsState(moverData.rollRate, direction);
             MoveForward(transform, moverData.speed);
             Rotate(transform, moverData.yawRate);
         }
 
-        private void UpdateAileronsState(MoverData moverData, float direction, Transform t)
+        private void UpdateAileronsState(float rollRate, float direction)
         {
             int desiredDirectionToRoll = Math.Sign(direction - aileronsState);
-            float rollAmount = desiredDirectionToRoll * moverData.rollRate * Time.deltaTime;
+            float rollAmount = desiredDirectionToRoll * rollRate * Time.deltaTime;
 
             if (Mathf.Abs(rollAmount) > Mathf.Abs(direction * 100 - aileronsState * 100))
             {

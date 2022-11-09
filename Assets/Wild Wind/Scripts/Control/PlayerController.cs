@@ -30,12 +30,7 @@ namespace WildWind.Control
                 return _mover;
 
             }
-            set
-            {
-                _mover = value as IMover;
-            }
         }
-
         [SerializeField]private int _price;
         public int price { get { return _price; } set { _price = value; } }
 
@@ -53,7 +48,6 @@ namespace WildWind.Control
             if (Application.platform == RuntimePlatform.WindowsEditor)
             {
 
-
                 if ((Input.mousePosition.x > Screen.width / 2 && Input.GetMouseButton(0)) || Input.GetKey(KeyCode.RightArrow))
                 {
                     mover.Execute(moverData, transform, 1f);
@@ -68,7 +62,6 @@ namespace WildWind.Control
                 mover.Execute(moverData, transform, 0f);
 
             }
-
             if (Application.platform == RuntimePlatform.Android)
             {
 

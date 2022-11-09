@@ -22,10 +22,6 @@ namespace WildWind.Systems.Spawn
         public int maxActivePowerups;
         public int maxActiveStars;
 
-        private int activeMissiles = 0;
-        private int activePowerups = 0;
-        private int activeStars = 0;
-
         public float spawnDistance = 100;
 
         private List<GameObject> spawnedObjects = new List<GameObject>();
@@ -132,11 +128,6 @@ namespace WildWind.Systems.Spawn
             return new Vector3(Mathf.Cos(randomAngle) * direction.x - Mathf.Sin(randomAngle) * direction.z, 0, Mathf.Sin(randomAngle) * direction.x + Mathf.Cos(randomAngle) * direction.z);
         }
 
-        private Transform GetPlayer()
-        {
-            return FindObjectOfType<PlayerController>().transform;
-        }
-
         private float RandomAngle()
         {
             return Random.Range(0, Mathf.PI * 4);
@@ -153,48 +144,6 @@ namespace WildWind.Systems.Spawn
         {
 
             spawnDirector.time = 0;
-
-        }
-
-        public void AddActiveMissiles()
-        {
-
-            activeMissiles++;
-
-        }
-
-        public void RemoveActiveMissiles()
-        {
-
-            activeMissiles--;
-
-        }
-
-        public void AddActivePowerups()
-        {
-
-            activePowerups++;
-
-        }
-
-        public void RemoveActivePowerups()
-        {
-
-            activePowerups--;
-
-        }
-
-        public void AddActiveStars()
-        {
-
-            activeStars++;
-
-        }
-
-        public void RemoveActiveStars()
-        {
-
-            activeStars--;
 
         }
 

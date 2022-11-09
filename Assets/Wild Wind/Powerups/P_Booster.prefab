@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8648905410912876429}
   m_RootOrder: 0
@@ -93,9 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8648905410912876429}
   - component: {fileID: 8452756891458025219}
-  - component: {fileID: -4177425417329514800}
   - component: {fileID: 2816667913775815682}
   - component: {fileID: 1903101207758638001}
+  - component: {fileID: 9186467123180929502}
   m_Layer: 0
   m_Name: P_Booster
   m_TagString: Booster
@@ -113,6 +114,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3742566773098944734}
   m_Father: {fileID: 0}
@@ -133,18 +135,6 @@ MonoBehaviour:
   Renderer: {fileID: 7206296319038421054}
   alertUI: {fileID: 8240838237845462045, guid: dc5fdcaed02301843a3a2cd51ac25ed6, type: 3}
   alertOffset: {x: 40, y: 40}
---- !u!114 &-4177425417329514800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8648905410912876425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01c6284b55b78bc4dbf5234a3beeaa76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &2816667913775815682
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -173,3 +163,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boosterTime: 5
   boosterMultiplication: 1.5
+--- !u!114 &9186467123180929502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8648905410912876425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c6284b55b78bc4dbf5234a3beeaa76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

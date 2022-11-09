@@ -86,27 +86,6 @@ namespace WildWind.Systems
             base.OnEnable();
         }
 
-        private void OnApplicationQuit()
-        {
-
-
-
-        }
-
-        private void OnApplicationFocus(bool focus)
-        {
-
-
-
-        }
-
-        private void OnApplicationPause(bool pause)
-        {
-
-
-
-        }
-
         #region Game Mechanics
 
         /// <summary>

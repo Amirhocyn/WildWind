@@ -9,10 +9,9 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Planes
   m_Shader: {fileID: 4800000, guid: df695d70c539c3d4c87b79de307ab7bb, type: 3}
-  m_ShaderKeywords: _FRESNELHIGHLIGHTS_ON _MK_ALBEDO_MAP _MK_ARTISTIC_ANIMATION_STUTTER
-    _MK_COLOR_GRADING_ALBEDO _MK_DETAIL_BLEND_MIX _MK_DISSOLVE_DEFAULT _MK_ENVIRONMENT_REFLECTIONS_AMBIENT
-    _MK_FRESNEL_HIGHLIGHTS _MK_LIGHT_CEL _MK_NORMAL_MAP _MK_OCCLUSION_MAP _MK_PBS_MAP_0
-    _MK_SPECULAR_ISOTROPIC _MK_WRAPPED_DIFFUSE _WRAPPEDLIGHTING_ON
+  m_ShaderKeywords: _MK_ALBEDO_MAP _MK_ARTISTIC_ANIMATION_STUTTER _MK_COLOR_GRADING_ALBEDO
+    _MK_DETAIL_BLEND_MIX _MK_DISSOLVE_DEFAULT _MK_FRESNEL_HIGHLIGHTS _MK_LIGHT_CEL
+    _MK_NORMAL_MAP _MK_OCCLUSION_MAP _MK_PBS_MAP_0 _MK_SPECULAR_ISOTROPIC _MK_WRAPPED_DIFFUSE
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -217,7 +216,7 @@ Material:
     - _DrawnClampMin: 0
     - _DrawnMapScale: 2.82
     - _DstBlend: 0
-    - _EnvironmentReflections: 1
+    - _EnvironmentReflections: 0
     - _FresnelHighlights: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
