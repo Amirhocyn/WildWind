@@ -34,7 +34,6 @@ namespace WildWind.Systems.Spawn
 
             base.Awake();
 
-            //PlayerController.OnDeathStatic += ClearObjects;
             GameSystem.Instance.OnGameStart += ClearObjects;
             PlayerController.OnDeathStatic += ResetSpawnDirector;
 

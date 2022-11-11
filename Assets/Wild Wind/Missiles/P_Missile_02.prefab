@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &4847985617130733208
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736755984580526503}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3655913788042821773, guid: aa966e5b81806524fb004226cfd7f782, type: 3}
 --- !u!1001 &1502895558157270262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,16 +61,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa966e5b81806524fb004226cfd7f782, type: 3}
---- !u!1 &1736755984580526503 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: aa966e5b81806524fb004226cfd7f782, type: 3}
-  m_PrefabInstance: {fileID: 1502895558157270262}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &223717828285128818 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: aa966e5b81806524fb004226cfd7f782, type: 3}
   m_PrefabInstance: {fileID: 1502895558157270262}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1736755984580526503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: aa966e5b81806524fb004226cfd7f782, type: 3}
+  m_PrefabInstance: {fileID: 1502895558157270262}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4847985617130733208
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736755984580526503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3655913788042821773, guid: aa966e5b81806524fb004226cfd7f782, type: 3}
 --- !u!1001 &2841181211959565546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103,6 +103,10 @@ PrefabInstance:
     - target: {fileID: -3097157006259306179, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: alertOffset.y
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5724403050973038611, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
+      propertyPath: score
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 6447446174411090962, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: m_RootOrder
@@ -190,12 +194,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6447446174411090966, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: lifeTime
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6447446174411090966, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: moverData
       value: 
-      objectReference: {fileID: 11400000, guid: ecd0783db19d85e4e89f7831349e47a4, type: 2}
+      objectReference: {fileID: 11400000, guid: 1d05cea62707cf84cbe23f45ff33a044, type: 2}
     - target: {fileID: 6447446174411090966, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: _moverType
       value: 
@@ -210,14 +214,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
---- !u!4 &9084896660116762872 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6447446174411090962, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
-  m_PrefabInstance: {fileID: 2841181211959565546}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8565356039697269548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5887232402173599686, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
+  m_PrefabInstance: {fileID: 2841181211959565546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9084896660116762872 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6447446174411090962, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
   m_PrefabInstance: {fileID: 2841181211959565546}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3209124721174237199

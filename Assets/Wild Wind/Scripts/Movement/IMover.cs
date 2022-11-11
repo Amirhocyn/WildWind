@@ -10,6 +10,8 @@ namespace WildWind.Movement
 
         public void Execute(MoverData moverData,Transform transform,float direction);
 
+        public float GetRotation();
+
     }
 
 }

@@ -28,7 +28,7 @@ namespace WildWind.Movement
         /// <summary>
         /// unit is percent/second, indicates how fast the plane's ailerons raise and lower in a scale of -100% to 100%
         /// </summary>
-        [SerializeField, Range(0, 10000)] private float _rollRate;
+        [SerializeField, Range(0, 1000)] private float _rollRate;
         /// <summary>
         /// unit is percent/second, indicates how fast the plane's ailerons raise and lower in a scale of -100% to 100%
         /// </summary>

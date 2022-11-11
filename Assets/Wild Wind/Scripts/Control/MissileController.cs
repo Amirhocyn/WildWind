@@ -30,19 +30,20 @@ namespace WildWind.Control
             }
             set
             {
-                _mover = value as IMover;
+                _mover = value;
             }
         }
 
         [SerializeField] float lifeTime = 30;
         public static Action onDestroy;
-        float angleBetween = 0;
 
         public override void Start()
         {
 
             base.Start();
             SetTarget();
+            transform.LookAt(target.position);
+            transform.forward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
             StartCoroutine(WaitForEndOfLife());
 
         }
@@ -53,21 +54,17 @@ namespace WildWind.Control
             if (target != null)
             {
 
+                float angleBetween;
                 angleBetween = GetAngleBetweenMissileAndTarget();
-                //angleBetween = Mathf.Clamp(angleBetween * 3f / moverData.yawRate, -1, 1);
                 mover.Execute(moverData, transform, (Math.Sign(angleBetween)));
 
             }
             else
-            {
-
                 mover.Execute(moverData, transform, 0);
-
-            }
 
         }
 
-        IEnumerator WaitForEndOfLife()
+        private IEnumerator WaitForEndOfLife()
         {
 
             yield return new WaitForSeconds(lifeTime);

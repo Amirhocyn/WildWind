@@ -32,7 +32,7 @@ namespace WildWind.Combat
 
         private bool isDestructible { get => shields == 0; }
 
-        private string missileTag = "Missile";
+        private const string missileTag = "Missile";
 
         private void OnTriggerEnter(Collider other)
         {

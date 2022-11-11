@@ -1012,8 +1012,6 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: 366714611630876715, guid: 9b33b62309ae37647a7bb0250d246501, type: 2}
-    value: {fileID: 609741753}
   - key: {fileID: 2720240765627035171, guid: 9b33b62309ae37647a7bb0250d246501, type: 2}
     value: {fileID: 11400000, guid: 030d415b6f743e740b4b1d0716631c4b, type: 2}
   - key: {fileID: -2598542731057873902, guid: 9b33b62309ae37647a7bb0250d246501, type: 2}
@@ -1036,7 +1034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75b3e980fdb9e6428dcf29f0a3abc0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxActiveMissiles: 1
+  maxActiveMissiles: 0
   maxActivePowerups: 0
   maxActiveStars: 1
   spawnDistance: 70
@@ -2482,7 +2480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeScore: 10
   scoreMultiplier: 1
-  scoreGUI: {fileID: 0}
+  _score: 0
 --- !u!4 &1232451807
 Transform:
   m_ObjectHideFlags: 0
@@ -5613,6 +5611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit

@@ -45,6 +45,8 @@ namespace WildWind.Control
         public void Update()
         {
 
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, -mover.GetRotation() * 30);
+
             if (Application.platform == RuntimePlatform.WindowsEditor)
             {
 

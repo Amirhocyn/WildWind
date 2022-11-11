@@ -20,16 +20,23 @@ namespace WildWind.Movement
             Rotate(transform, moverData.yawRate);
         }
 
+        public float GetRotation()
+        {
+
+            return aileronsState;
+
+        }
+
         private void UpdateAileronsState(float rollRate, float direction)
         {
             int desiredDirectionToRoll = Math.Sign(direction - aileronsState);
             float rollAmount = desiredDirectionToRoll * rollRate * Time.deltaTime;
 
-            if (Mathf.Abs(rollAmount) > Mathf.Abs(direction * 100 - aileronsState * 100))
-            {
-                aileronsState = direction * 100;
-                return;
-            }
+            //if (Mathf.Abs(rollAmount) > Mathf.Abs(direction * 100 - aileronsState * 100))
+            //{
+            //    aileronsState = direction * 100;
+            //    return;
+            //}
 
             aileronsState = (int)(aileronsState * 100 + rollAmount);
         }

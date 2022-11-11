@@ -6,8 +6,8 @@ namespace WildWind.Combat
     public class MissileCombat : Combat
     {
 
-        private string playerTag = "Player";
-        private string missileTag = "Missile";
+        private const string playerTag = "Player";
+        private const string missileTag = "Missile";
 
         private void OnTriggerEnter(Collider other)
         {

@@ -10,7 +10,6 @@ namespace WildWind.Systems
         
         [SerializeField] int timeScore;
         public int scoreMultiplier = 1;
-        [SerializeField]
         private int _score = 0;
         public int score
         {

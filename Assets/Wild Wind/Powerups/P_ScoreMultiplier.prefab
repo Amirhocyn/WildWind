@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8648905410912876429}
   m_RootOrder: 0
@@ -95,6 +96,7 @@ GameObject:
   - component: {fileID: 8452756891458025219}
   - component: {fileID: -4177425417329514800}
   - component: {fileID: 2816667913775815682}
+  - component: {fileID: -7141629040844075815}
   m_Layer: 0
   m_Name: P_ScoreMultiplier
   m_TagString: Score Multiplier
@@ -112,6 +114,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3742566773098944734}
   m_Father: {fileID: 0}
@@ -158,3 +161,17 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7141629040844075815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8648905410912876425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3705238baa41f04281d5c0dfdb98359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreMultplierTime: 10
+  scoreMultplier: 2

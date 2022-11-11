@@ -576,7 +576,7 @@ PrefabInstance:
     - target: {fileID: 4146388946755377886, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: moverData
       value: 
-      objectReference: {fileID: 11400000, guid: fe94a779a6cfb224abb0c80877248400, type: 2}
+      objectReference: {fileID: 11400000, guid: 525657665cd60b14d965030b346e36d5, type: 2}
     - target: {fileID: 4146388946755377886, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: _moverType
       value: 

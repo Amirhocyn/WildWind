@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb754aede15929b48bf2def6047289ce, type: 3}
-  m_Name: Missile Mover Data
+  m_Name: MD_Plane4
   m_EditorClassIdentifier: 
-  _speed: 30
-  _yawRate: 120
-  _rollRate: 3460
+  _speed: 25
+  _yawRate: 270
+  _rollRate: 650

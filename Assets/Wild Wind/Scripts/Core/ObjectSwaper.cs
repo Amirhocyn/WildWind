@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using WildWind.Movement;
 
 namespace WildWind.Core
 {
@@ -13,17 +12,14 @@ namespace WildWind.Core
     {
 
         public delegate ref T ReturnObjectByRef();
-        ReturnObjectByRef originalObject;
-        ReturnObjectByRef alternativeObject;
-
-        private CancellationTokenSource CancellationTokenSource;
+        private ReturnObjectByRef originalObject;
+        private ReturnObjectByRef alternativeObject;
 
         public ObjectSwaper(ReturnObjectByRef original, ReturnObjectByRef alternative, Func<bool> violationCondition, CancellationTokenSource cancellationTokenSource, ref Task task)
         {
 
             originalObject = original;
             alternativeObject = alternative;
-            CancellationTokenSource = cancellationTokenSource;
 
             SwapObjects();
 
@@ -54,7 +50,6 @@ namespace WildWind.Core
         private void SwapObjects()
         {
 
-            Debug.LogWarning("Swaping : " + (originalObject() as MoverData).speed + "    " + (alternativeObject() as MoverData).speed);
             T originalHelper = (T)((object)originalObject());
             originalObject() = (T)((object)alternativeObject());
             alternativeObject() = originalHelper;

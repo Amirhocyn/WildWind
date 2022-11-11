@@ -7,30 +7,37 @@ using UnityEngine;
 using WildWind.Control;
 using WildWind.Core;
 using WildWind.Movement;
+using WildWind.Systems;
 
 namespace WildWind.Powerup
 {
 
-    public class Booster : MonoBehaviour
+    public class ScoreMultiplier : MonoBehaviourMaster<ScoreMultiplier>
     {
 
-        [SerializeField] private int boosterTime = 5;
-        [SerializeField] private float boosterSpeedMultiplication = 1.5f;
-
+        [SerializeField] private  float scoreMultplierTime;
+        [SerializeField] private int scoreMultplier;
         private bool isConsumed = false;
         private const string playerTag = "Player";
         private static CancellationTokenSource cancellationTokenSource;
         private static Task task;
-        MoverData boosterMoverData;
 
         private async void OnTriggerEnter(Collider other)
         {
+
+            //if (other.tag == "Score Multiplier")
+            //{
+            //
+            //    ResetTimer();
+            //    Destroy(other.gameObject);
+            //
+            //}
+
             if (!isConsumed && other.CompareTag(playerTag))
             {
 
                 isConsumed = true;
                 Destroy(gameObject);
-                PlayerController playerController = other.GetComponentInParent<PlayerController>();
 
                 if (cancellationTokenSource != null) cancellationTokenSource.Cancel();
 
@@ -40,38 +47,29 @@ namespace WildWind.Powerup
                     cancellationTokenSource.Dispose();
                 }
 
-                ApplyBooster(playerController);
+                ApplyScoreMultiplier();
 
             }
+
         }
 
-        private void ApplyBooster(PlayerController playerController)
+        void ApplyScoreMultiplier()
         {
 
             cancellationTokenSource = new CancellationTokenSource();
             CancellationToken token = cancellationTokenSource.Token;
 
-            boosterMoverData = ScriptableObject.CreateInstance<MoverData>();
-            CreateBoosterMoverData(boosterMoverData, playerController);
-
             float initTime = WildWindTime.Instance.time;
 
             Func<bool> violationCondition = (() =>
             {
-                return boosterTime + initTime < WildWindTime.Instance.time;
+                return scoreMultplierTime + initTime < WildWindTime.Instance.time;
             });
-
-            new ObjectSwaper<MoverData>(
-                () => { return ref playerController.moverData; },
-                () => { return ref boosterMoverData; }, 
+            new ObjectSwaper<int>(
+                () => { return ref ScoringSystem.Instance.scoreMultiplier; },
+                () => { return ref scoreMultplier; },
                 violationCondition, cancellationTokenSource, ref task);
-        }
 
-        private void CreateBoosterMoverData(MoverData moverData,PlayerController playerController)
-        {
-            moverData.speed = playerController.GetMoverData().speed * boosterSpeedMultiplication;
-            moverData.yawRate = playerController.GetMoverData().yawRate;
-            moverData.rollRate = playerController.GetMoverData().rollRate;
         }
 
     }

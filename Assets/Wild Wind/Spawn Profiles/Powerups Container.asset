@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObjects:
   - gameObject: {fileID: 8648905410912876425, guid: dc5677875d4dd1e4db4021160460729f, type: 3}
+    chance: 0
+  - gameObject: {fileID: 8648905410912876425, guid: 86ef9de77464dc9419bb81db84800ce0, type: 3}
     chance: 100
   canAdd: 1
   maxActiveObjects: 1
-  timeRange: {x: 10, y: 15}
+  timeRange: {x: 0.1, y: 0.2}
   activeObjects: 0
   limitCap: 1
