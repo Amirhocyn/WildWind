@@ -1034,9 +1034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75b3e980fdb9e6428dcf29f0a3abc0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxActiveMissiles: 0
-  maxActivePowerups: 0
-  maxActiveStars: 1
   spawnDistance: 70
   spawnContainers:
   - {fileID: 11400000, guid: 030d415b6f743e740b4b1d0716631c4b, type: 2}

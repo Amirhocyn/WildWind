@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb754aede15929b48bf2def6047289ce, type: 3}
   m_Name: MD_Plane5
   m_EditorClassIdentifier: 
-  _speed: 0
+  _speed: 18
   _yawRate: 360
   _rollRate: 250
