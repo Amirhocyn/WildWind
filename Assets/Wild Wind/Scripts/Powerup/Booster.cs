@@ -54,7 +54,7 @@ namespace WildWind.Powerup
             boosterMoverData = ScriptableObject.CreateInstance<MoverData>();
             CreateBoosterMoverData(boosterMoverData, playerController);
 
-            float initTime = WildWindTime.Instance.time;
+            float initTime = Time.time;
 
             Func<bool> violationCondition = (() =>
             {

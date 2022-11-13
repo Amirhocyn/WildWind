@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245e677034c30b74e9c60952b7de0f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Renderer: {fileID: 7206296319038421054}
+  objectRenderer: {fileID: 7206296319038421054}
   alertUI: {fileID: 8240838237845462045, guid: dc5fdcaed02301843a3a2cd51ac25ed6, type: 3}
   alertOffset: {x: 40, y: 40}
 --- !u!136 &2816667913775815682
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boosterTime: 5
-  boosterMultiplication: 1.5
+  boosterSpeedMultiplication: 1.5
 --- !u!114 &9186467123180929502
 MonoBehaviour:
   m_ObjectHideFlags: 0

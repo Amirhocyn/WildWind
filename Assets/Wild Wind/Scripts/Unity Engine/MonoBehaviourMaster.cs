@@ -15,7 +15,7 @@ namespace UnityEngine
         public static Action OnTickStatic;
         public static Action OnTickLateStatic;
         public static Action OnDeathStatic;
-        public Action OnEnables;
+        public Action OnEnabled;
         public Action OnAwake;
         public Action OnStart;
         public Action OnTick;
@@ -25,10 +25,10 @@ namespace UnityEngine
         public virtual void OnEnable()
         {
             
-            if(OnEnables != null)
+            if(OnEnabled != null)
             {
 
-                OnEnables();
+                OnEnabled();
 
             }
             if(OnEnableStatic != null)

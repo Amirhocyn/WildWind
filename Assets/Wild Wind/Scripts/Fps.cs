@@ -9,13 +9,6 @@ public class Fps : MonoBehaviour
     string label = "";
 	float count;
 	List<float> times = new List<float>();
-	
-	void Start ()
-	{
-	
-	
-
-	}
 
 	private void Update()
     {

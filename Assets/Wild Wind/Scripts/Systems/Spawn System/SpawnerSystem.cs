@@ -18,15 +18,11 @@ namespace WildWind.Systems.Spawn
     public class SpawnerSystem : MonoSingleton<SpawnerSystem>
     {
 
-        public int maxActiveMissiles;
-        public int maxActivePowerups;
-        public int maxActiveStars;
-
         public float spawnDistance = 100;
 
-        private List<GameObject> spawnedObjects = new List<GameObject>();
         [SerializeField]
         private List<SpawnContainer> spawnContainers;
+        private List<GameObject> spawnedObjects = new List<GameObject>();
         private PlayableDirector spawnDirector;
 
         public override void Awake()
@@ -88,7 +84,6 @@ namespace WildWind.Systems.Spawn
                 }
 
                 int rand = Random.Range(0, spawnContainer.overalChance);
-                float randAngle = RandomAngle();
 
                 for (int j = 0; j < chance.Count; j++)
                 {
@@ -99,7 +94,7 @@ namespace WildWind.Systems.Spawn
                         Vector3 pos;
                         Transform playerTransform = GameSystem.Instance.player.transform;
 
-                        pos = RandomPosition(randAngle, playerTransform.forward);
+                        pos = RandomDirection(playerTransform.forward);
                         pos *= spawnDistance;
                         pos += playerTransform.position;
 
@@ -122,9 +117,10 @@ namespace WildWind.Systems.Spawn
 
         }
 
-        private Vector3 RandomPosition(float randomAngle, Vector3 direction)
+        private Vector3 RandomDirection(Vector3 direction)
         {
-            return new Vector3(Mathf.Cos(randomAngle) * direction.x - Mathf.Sin(randomAngle) * direction.z, 0, Mathf.Sin(randomAngle) * direction.x + Mathf.Cos(randomAngle) * direction.z);
+            float randAngle = RandomAngle();
+            return new Vector3(Mathf.Cos(randAngle) * direction.x - Mathf.Sin(randAngle) * direction.z, 0, Mathf.Sin(randAngle) * direction.x + Mathf.Cos(randAngle) * direction.z);
         }
 
         private float RandomAngle()
@@ -132,31 +128,11 @@ namespace WildWind.Systems.Spawn
             return Random.Range(0, Mathf.PI * 4);
         }
 
-        private void UpdateSpawnDirector()
-        {
-            
-            spawnDirector.time = Mathf.Clamp(ScoringSystem.Instance.score,0,(float)spawnDirector.duration - 1);
+        private void UpdateSpawnDirector() => spawnDirector.time = Mathf.Clamp(ScoringSystem.Instance.score,0,(float)spawnDirector.duration - 1);
 
-        }
+        private void ResetSpawnDirector() => spawnDirector.time = 0;
 
-        private void ResetSpawnDirector()
-        {
-
-            spawnDirector.time = 0;
-
-        }
-
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-        }
-
-        public override void OnEnable()
-        {
-            base.OnEnable();
-        }
-
-        public void ClearObjects()
+        private void ClearObjects()
         {
 
             foreach(GameObject a in spawnedObjects)

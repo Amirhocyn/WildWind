@@ -19,6 +19,14 @@ PrefabInstance:
       propertyPath: alertOffset.y
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: -3097157006259306179, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
+      propertyPath: objectRenderer
+      value: 
+      objectReference: {fileID: 7967668660982212136}
+    - target: {fileID: -3097157006259306179, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
+      propertyPath: missileRenderer
+      value: 
+      objectReference: {fileID: 7967668660982212136}
     - target: {fileID: 6447446174411090960, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

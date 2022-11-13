@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6844320503419086689}
   m_Father: {fileID: 0}
@@ -73,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245e677034c30b74e9c60952b7de0f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Renderer: {fileID: 4970085576437502726}
+  objectRenderer: {fileID: 4970085576437502726}
   alertUI: {fileID: 631547325812533536, guid: b6f2426cc1f26c946814e17ecfe13e50, type: 3}
   alertOffset: {x: 40, y: 40}
 --- !u!114 &-2428281412077793377
@@ -129,6 +130,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2301949464110749822}
   m_RootOrder: 0

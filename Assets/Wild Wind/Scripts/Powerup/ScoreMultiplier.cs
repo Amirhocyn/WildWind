@@ -51,7 +51,7 @@ namespace WildWind.Powerup
             cancellationTokenSource = new CancellationTokenSource();
             CancellationToken token = cancellationTokenSource.Token;
 
-            float initTime = WildWindTime.Instance.time;
+            float initTime = Time.time;
 
             Func<bool> violationCondition = (() =>
             {

@@ -20,12 +20,7 @@ namespace WildWind.Movement
             Rotate(transform, moverData.yawRate);
         }
 
-        public float GetRotation()
-        {
-
-            return aileronsState;
-
-        }
+        public float GetRotation() => aileronsState;
 
         private void UpdateAileronsState(float rollRate, float direction)
         {
@@ -35,12 +30,6 @@ namespace WildWind.Movement
             float rollAmount = desiredDirectionToRoll * rollRate * Time.deltaTime;
             if (direction != 0)
                 rollAmount *= Mathf.Abs(direction);
-
-            //if (Mathf.Abs(rollAmount) > Mathf.Abs(direction * 100 - aileronsState * 100))
-            //{
-            //    aileronsState = direction * 100;
-            //    return;
-            //}
 
             aileronsState = (int)(aileronsState * 100 + rollAmount);
         }

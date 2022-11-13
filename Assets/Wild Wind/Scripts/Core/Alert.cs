@@ -12,7 +12,7 @@ namespace WildWind.Core
 
         public static Transform alertCenter;
         [SerializeField] 
-        private Renderer missileRenderer;
+        private Renderer objectRenderer;
         [SerializeField]
         private GameObject alertUI;
         [SerializeField] 
@@ -48,7 +48,7 @@ namespace WildWind.Core
 
             }
 
-            if (!missileRenderer.isVisible)
+            if (!objectRenderer.isVisible)
             {
 
                 if (!alertUI.activeSelf)

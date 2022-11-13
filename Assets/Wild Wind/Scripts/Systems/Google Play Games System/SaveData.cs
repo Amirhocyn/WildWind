@@ -129,13 +129,6 @@ namespace WildWind.Systems
 
         }
 
-        public SaveData()
-        {
-
-
-
-        }
-
     }
 
 }

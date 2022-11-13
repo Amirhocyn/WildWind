@@ -404,6 +404,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2454233610931261822, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454233610931261822, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: shieldImg
       value: 
       objectReference: {fileID: 150278369417002815}
