@@ -42,6 +42,28 @@ MonoBehaviour:
     maxActiveMissiles: 903
     maxActivePowerups: 0
     maxActiveStars: 0
+--- !u!114 &-8659556775832161878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa03d36640268be45bb9d7a3cbfa5368, type: 3}
+  m_Name: SpawnContainerClip(Clone)
+  m_EditorClassIdentifier: 
+  spawnContainerBehaviour:
+    spawnObjects:
+    - gameObject: {fileID: 8648905410912876425, guid: dc5677875d4dd1e4db4021160460729f, type: 3}
+      chance: 100
+    - gameObject: {fileID: 8648905410912876425, guid: 86ef9de77464dc9419bb81db84800ce0, type: 3}
+      chance: 42
+    - gameObject: {fileID: 4853375499672253821, guid: cecd85947c83bae44a659648e5fd8927, type: 3}
+      chance: 100
+    maxActiveObjects: 2
+    TimeRange: {x: 4, y: 10}
 --- !u!114 &-8001196264149953361
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -309,7 +331,76 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 7521658866920023669}
-    m_Duration: 1951.2833333333333
+    m_Duration: 554.3333333333334
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -2598542731057873902}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: SpawnContainerClip
+  - m_Version: 1
+    m_Start: 554.3333333333334
+    m_ClipIn: 0
+    m_Asset: {fileID: -8659556775832161878}
+    m_Duration: 1396.9499999999998
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2598542731057873902}
     m_EaseInDuration: 0
@@ -1089,11 +1180,13 @@ MonoBehaviour:
   spawnContainerBehaviour:
     spawnObjects:
     - gameObject: {fileID: 8648905410912876425, guid: dc5677875d4dd1e4db4021160460729f, type: 3}
-      chance: 0
-    - gameObject: {fileID: 8648905410912876425, guid: 86ef9de77464dc9419bb81db84800ce0, type: 3}
       chance: 100
+    - gameObject: {fileID: 8648905410912876425, guid: 86ef9de77464dc9419bb81db84800ce0, type: 3}
+      chance: 0
+    - gameObject: {fileID: 4853375499672253821, guid: cecd85947c83bae44a659648e5fd8927, type: 3}
+      chance: 0
     maxActiveObjects: 1
-    TimeRange: {x: 0.1, y: 0.2}
+    TimeRange: {x: 4, y: 10}
 --- !u!114 &8104684307968332647
 MonoBehaviour:
   m_ObjectHideFlags: 1

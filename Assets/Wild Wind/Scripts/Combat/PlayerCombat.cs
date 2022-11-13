@@ -9,9 +9,12 @@ namespace WildWind.Combat
     public class PlayerCombat : Combat
     {
 
-        [SerializeField] Image shieldImg;
+        [SerializeField] 
+        private EventChannel OnShieldCollected;
+        [SerializeField] 
+        private Image shieldImg;
         private int _shields = 0;
-        int shields
+        private int shields
         {
 
             get
@@ -23,28 +26,49 @@ namespace WildWind.Combat
             set
             {
 
-                _shields = Mathf.Clamp(value, 0, 4);
-                shieldImg.gameObject.SetActive(shields >= 1);
+                _shields = Mathf.Clamp(value, 0, 3);
+                if(shieldImg == null)
+                    shieldImg = GetComponentInChildren<Image>();
+                shieldImg.gameObject.SetActive(_shields >= 1);
 
             }
 
         }
-
         private bool isDestructible { get => shields == 0; }
-
         private const string missileTag = "Missile";
+        private bool isColliding = false;
+
+        public override void Start()
+        {
+
+            base.Start();
+            OnShieldCollected.OnNotify += AddShield;
+
+        }
+
+        private void Update() => isColliding = false;
+
 
         private void OnTriggerEnter(Collider other)
         {
 
+            if (isColliding)
+                return;
+            isColliding = true;
+
             if (other.CompareTag(missileTag))
             {
-                shields--;
                 if (isDestructible)
+                {
+                    OnShieldCollected.OnNotify -= AddShield;
                     Destroy(gameObject);
+                }
+                shields--;
             }
 
         }
+
+        private void AddShield() => shields++;
 
     }
 

@@ -17,7 +17,7 @@ namespace WildWind.Control
 
         [SerializeField] public MoverData moverData;
 
-        [SerializeField] private ObjectType _moverType;
+        [SerializeField] private ObjectType moverType;
         private IMover _mover;
         public IMover mover
         {
@@ -25,7 +25,7 @@ namespace WildWind.Control
             {
 
                 if (_mover == null)
-                    _mover = Activator.CreateInstance(_moverType.type) as IMover;
+                    _mover = Activator.CreateInstance(moverType.type) as IMover;
 
                 return _mover;
 
@@ -33,14 +33,6 @@ namespace WildWind.Control
         }
         [SerializeField]private int _price;
         public int price { get { return _price; } set { _price = value; } }
-
-
-        public override void Start()
-        {
-            Debug.LogWarning(_moverType.type);
-            base.Start();
-
-        }
 
         public void Update()
         {

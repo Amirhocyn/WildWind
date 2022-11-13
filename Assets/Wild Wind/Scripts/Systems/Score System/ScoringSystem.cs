@@ -8,7 +8,6 @@ namespace WildWind.Systems
     public class ScoringSystem : MonoSingleton<ScoringSystem>
     {
         
-        [SerializeField] int timeScore;
         public int scoreMultiplier = 1;
         private int _score = 0;
         public int score
@@ -29,7 +28,7 @@ namespace WildWind.Systems
 
         }
 
-        //private int rawScore { get; set; }
+        [SerializeField] private int timeScore;
         private Coroutine timer;
         private int defaultScoreMultiplier = 1;
 
@@ -56,7 +55,6 @@ namespace WildWind.Systems
         internal void AddScore(int scoreToAdd) => score += (int)(scoreToAdd * scoreMultiplier);
 
         private void StartTimer() => timer = StartCoroutine("Timer",timer);
-
 
         private void StopTimer() => StopCoroutine(timer);
 

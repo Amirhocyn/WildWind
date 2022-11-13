@@ -166,16 +166,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6447446174411090966, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: lifeTime
-      value: 2.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6447446174411090966, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: moverData
       value: 
       objectReference: {fileID: 11400000, guid: 99c988a4a26d92c43982bdfabe6ba84f, type: 2}
     - target: {fileID: 6447446174411090966, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
+      propertyPath: moverType
+      value: 
+      objectReference: {fileID: 11400000, guid: 122ddbd67bad745499c564818ab248c4, type: 2}
+    - target: {fileID: 6447446174411090966, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: _moverType
       value: 
       objectReference: {fileID: 11400000, guid: 122ddbd67bad745499c564818ab248c4, type: 2}
+    - target: {fileID: 6447446174411090966, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
+      propertyPath: smoothedSteeringAnle
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8578338988603779180, guid: c60861c405f1cb94d8eeea4e007672d1, type: 3}
       propertyPath: m_AngularDrag
       value: 0.1

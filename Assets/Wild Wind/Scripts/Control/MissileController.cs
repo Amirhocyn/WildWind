@@ -13,17 +13,24 @@ namespace WildWind.Control
     public class MissileController : MonoBehaviourMaster<MissileController>
     {
 
-        private Transform target;
-        [SerializeField] private MoverData moverData;
-        [SerializeField] private ObjectType _moverType;
+        public static Action onDestroy;
+
+        [SerializeField] 
+        private MoverData moverData;
+        [SerializeField] 
+        private ObjectType moverType;
+        [SerializeField]
+        private float smoothedSteeringAnle = 30;
+        [SerializeField] 
+        private float lifeTime = 30;
         private IMover _mover;
-        public IMover mover
+        private IMover mover
         {
             get
             {
 
                 if (_mover == null)
-                    _mover = Activator.CreateInstance(_moverType.type) as IMover;
+                    _mover = Activator.CreateInstance(moverType.type) as IMover;
 
                 return _mover;
 
@@ -33,9 +40,7 @@ namespace WildWind.Control
                 _mover = value;
             }
         }
-
-        [SerializeField] float lifeTime = 30;
-        public static Action onDestroy;
+        private Transform target;
 
         public override void Start()
         {
@@ -56,6 +61,7 @@ namespace WildWind.Control
 
                 float angleBetween;
                 angleBetween = GetAngleBetweenMissileAndTarget();
+                float yaw = Mathf.Clamp(angleBetween/50f, -1f, 1f);
                 mover.Execute(moverData, transform, (Math.Sign(angleBetween)));
 
             }

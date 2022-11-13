@@ -407,6 +407,10 @@ PrefabInstance:
       propertyPath: shieldImg
       value: 
       objectReference: {fileID: 150278369417002815}
+    - target: {fileID: 2454233610931261822, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: OnShieldCollected
+      value: 
+      objectReference: {fileID: 11400000, guid: 837c2ca361432ab439f2b3f926c10a22, type: 2}
     - target: {fileID: 4146388946755377860, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: m_Name
       value: P_Plane_05
@@ -467,6 +471,10 @@ PrefabInstance:
       propertyPath: moverData
       value: 
       objectReference: {fileID: 11400000, guid: 7709e6ff360bd7a4a96541b40c419084, type: 2}
+    - target: {fileID: 4146388946755377886, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: moverType
+      value: 
+      objectReference: {fileID: 11400000, guid: 122ddbd67bad745499c564818ab248c4, type: 2}
     - target: {fileID: 4146388946755377886, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: _moverType
       value: 

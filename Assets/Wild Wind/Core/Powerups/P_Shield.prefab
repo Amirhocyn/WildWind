@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -7513802602712147532}
   - component: {fileID: 7724622608371975093}
   - component: {fileID: 6015056383038914633}
+  - component: {fileID: -4784090034738467997}
   m_Layer: 0
   m_Name: P_Shield
   m_TagString: Shield
@@ -29,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2129366971689774507}
   m_Father: {fileID: 0}
@@ -75,6 +77,19 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4784090034738467997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4853375499672253821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482ec3afa1999944ab40a152f31bf6c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDestroyed: {fileID: 11400000, guid: 837c2ca361432ab439f2b3f926c10a22, type: 2}
 --- !u!1 &6190262687627321287
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +117,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4853375499672253817}
   m_RootOrder: 0

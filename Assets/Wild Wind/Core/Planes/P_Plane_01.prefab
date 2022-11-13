@@ -303,6 +303,10 @@ PrefabInstance:
       propertyPath: shieldImg
       value: 
       objectReference: {fileID: 368860738364472381}
+    - target: {fileID: 2454233610931261822, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: OnShieldCollected
+      value: 
+      objectReference: {fileID: 11400000, guid: 837c2ca361432ab439f2b3f926c10a22, type: 2}
     - target: {fileID: 4146388946755377860, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: m_Name
       value: P_Plane_01
@@ -356,6 +360,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: fe94a779a6cfb224abb0c80877248400, type: 2}
     - target: {fileID: 4146388946755377886, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+      propertyPath: moverType
+      value: 
+      objectReference: {fileID: 11400000, guid: 122ddbd67bad745499c564818ab248c4, type: 2}
+    - target: {fileID: 4146388946755377886, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
       propertyPath: _moverType
       value: 
       objectReference: {fileID: 11400000, guid: 122ddbd67bad745499c564818ab248c4, type: 2}
@@ -405,6 +413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4146388946755377875, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
+    - {fileID: 4105431215629812616, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 89138d83d49ede145b5ac28407163bd7, type: 3}
 --- !u!114 &368860738364472381 stripped
 MonoBehaviour:

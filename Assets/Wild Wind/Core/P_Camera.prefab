@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 6.0962467, y: 15.255539, z: -44.593327}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1781678753659430091}
   m_RootOrder: 1
@@ -44,7 +45,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.36311856, g: 0.9056604, b: 0.82494485, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.5137255, b: 0.62352943, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -107,6 +108,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 1
   m_AntialiasingQuality: 2
@@ -180,6 +182,7 @@ Transform:
   m_LocalRotation: {x: -0.48582262, y: -0.06412817, z: 0.03577071, w: 0.87096757}
   m_LocalPosition: {x: -2.1217105, y: -2.37924, z: 12.292295}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1781678753618481860}
   m_RootOrder: 0
@@ -293,6 +296,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 6.0962467, y: 15.255539, z: -44.593327}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1781678753108206471}
   m_Father: {fileID: 1781678753659430091}
@@ -327,7 +331,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5662394, y: 1}
+    m_SensorSize: {x: 2.2042253, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -363,6 +367,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 22.463753, y: 1.0444646, z: 59.373333}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1781678753618481860}
   - {fileID: 1781678752719997208}

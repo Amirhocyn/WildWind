@@ -29,8 +29,12 @@ namespace WildWind.Movement
 
         private void UpdateAileronsState(float rollRate, float direction)
         {
-            int desiredDirectionToRoll = Math.Sign(direction - aileronsState);
+
+            int signedDirection = direction == 0 ? 0 : (int)Mathf.Sign(direction);
+            int desiredDirectionToRoll = Math.Sign(signedDirection - aileronsState);
             float rollAmount = desiredDirectionToRoll * rollRate * Time.deltaTime;
+            if (direction != 0)
+                rollAmount *= Mathf.Abs(direction);
 
             //if (Mathf.Abs(rollAmount) > Mathf.Abs(direction * 100 - aileronsState * 100))
             //{

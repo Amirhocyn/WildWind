@@ -15,7 +15,7 @@ namespace WildWind.Powerup
     public class ScoreMultiplier : MonoBehaviourMaster<ScoreMultiplier>
     {
 
-        [SerializeField] private  float scoreMultplierTime;
+        [SerializeField] private float scoreMultplierTime;
         [SerializeField] private int scoreMultplier;
         private bool isConsumed = false;
         private const string playerTag = "Player";
@@ -24,14 +24,6 @@ namespace WildWind.Powerup
 
         private async void OnTriggerEnter(Collider other)
         {
-
-            //if (other.tag == "Score Multiplier")
-            //{
-            //
-            //    ResetTimer();
-            //    Destroy(other.gameObject);
-            //
-            //}
 
             if (!isConsumed && other.CompareTag(playerTag))
             {
