@@ -19,8 +19,6 @@ namespace WildWind.Control
         private MoverData moverData;
         [SerializeField] 
         private ObjectType moverType;
-        [SerializeField]
-        private float smoothedSteeringAnle = 30;
         [SerializeField] 
         private float lifeTime = 30;
         private IMover _mover;
@@ -61,7 +59,6 @@ namespace WildWind.Control
 
                 float angleBetween;
                 angleBetween = GetAngleBetweenMissileAndTarget();
-                float yaw = Mathf.Clamp(angleBetween/50f, -1f, 1f);
                 mover.Execute(moverData, transform, (Math.Sign(angleBetween)));
 
             }
@@ -92,7 +89,6 @@ namespace WildWind.Control
                 target = FindObjectOfType<PlayerController>().transform;
 
         }
-
 
         public override void OnDestroy()
         {

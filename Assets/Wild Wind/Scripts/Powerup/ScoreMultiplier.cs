@@ -55,9 +55,9 @@ namespace WildWind.Powerup
 
             Func<bool> violationCondition = (() =>
             {
-                return scoreMultplierTime + initTime < WildWindTime.Instance.time;
+                return scoreMultplierTime + initTime < GameTime.Instance.time;
             });
-            new ObjectSwaper<int>(
+            new ObjectSwapper<int>(
                 () => { return ref ScoringSystem.Instance.scoreMultiplier; },
                 () => { return ref scoreMultplier; },
                 violationCondition, cancellationTokenSource, ref task);

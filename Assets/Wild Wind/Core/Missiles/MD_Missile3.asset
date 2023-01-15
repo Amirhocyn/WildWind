@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MD_Missile3
   m_EditorClassIdentifier: 
   _speed: 50
-  _yawRate: 30
+  _yawRate: 10
   _rollRate: 1000

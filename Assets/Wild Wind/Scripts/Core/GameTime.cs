@@ -6,11 +6,14 @@ using WildWind.Systems;
 namespace WildWind.Core
 {
 
-    public class WildWindTime : MonoSingleton<WildWindTime>
+    public class GameTime : MonoSingleton<GameTime>
     {
 
+        [HideInInspector]
         public float time = 0;
+        [HideInInspector]
         public float deltaTime = 0;
+        [HideInInspector]
         public float timeScale;
 
         private void Update()

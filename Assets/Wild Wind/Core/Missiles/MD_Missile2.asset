@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb754aede15929b48bf2def6047289ce, type: 3}
   m_Name: MD_Missile2
   m_EditorClassIdentifier: 
-  _speed: 35
-  _yawRate: 120
+  _speed: 40
+  _yawRate: 180
   _rollRate: 600

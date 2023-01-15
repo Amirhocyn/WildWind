@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WildWind.Combat
+namespace WildWind.Powerup
 {
-
     public class Shield : MonoBehaviourMaster<Shield>
     {
 

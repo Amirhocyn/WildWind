@@ -8,14 +8,14 @@ using UnityEngine;
 namespace WildWind.Core
 {
 
-    public class ObjectSwaper<T>
+    public class ObjectSwapper<T>
     {
 
         public delegate ref T ReturnObjectByRef();
         private ReturnObjectByRef originalObject;
         private ReturnObjectByRef alternativeObject;
 
-        public ObjectSwaper(ReturnObjectByRef original, ReturnObjectByRef alternative, Func<bool> violationCondition, CancellationTokenSource cancellationTokenSource, ref Task task)
+        public ObjectSwapper(ReturnObjectByRef original, ReturnObjectByRef alternative, Func<bool> violationCondition, CancellationTokenSource cancellationTokenSource, ref Task task)
         {
 
             originalObject = original;
@@ -36,7 +36,7 @@ namespace WildWind.Core
                 {
                     while (!(violationCondition() || token.IsCancellationRequested))
                     {
-                        //if (token.IsCancellationRequested) break;
+
                     }
                 });
             }

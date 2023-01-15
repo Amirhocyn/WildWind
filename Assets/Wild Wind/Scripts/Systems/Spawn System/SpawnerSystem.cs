@@ -72,16 +72,7 @@ namespace WildWind.Systems.Spawn
             {
 
                 List<int> chance = new List<int>();
-
-                for (int j = 0;j < spawnContainer.spawnObjects.Count;j++)
-                {
-
-                    if (chance.Count != 0)
-                        chance.Add(chance[chance.Count - 1] + spawnContainer.spawnObjects[j].chance);
-                    else
-                        chance.Add(spawnContainer.spawnObjects[j].chance);
-
-                }
+                CalculateChances(spawnContainer, chance);
 
                 int rand = Random.Range(0, spawnContainer.overalChance);
 
@@ -117,19 +108,34 @@ namespace WildWind.Systems.Spawn
 
         }
 
+        private static void CalculateChances(SpawnContainer spawnContainer, List<int> chance)
+        {
+            for (int j = 0; j < spawnContainer.spawnObjects.Count; j++)
+            {
+
+                if (chance.Count != 0)
+                    chance.Add(chance[chance.Count - 1] + spawnContainer.spawnObjects[j].chance);
+                else
+                    chance.Add(spawnContainer.spawnObjects[j].chance);
+
+            }
+        }
+
         private Vector3 RandomDirection(Vector3 direction)
         {
             float randAngle = RandomAngle();
-            return new Vector3(Mathf.Cos(randAngle) * direction.x - Mathf.Sin(randAngle) * direction.z, 0, Mathf.Sin(randAngle) * direction.x + Mathf.Cos(randAngle) * direction.z);
+            return new Vector3(Mathf.Cos(randAngle) * direction.x - Mathf.Sin(randAngle) * direction.z, 0,
+                Mathf.Sin(randAngle) * direction.x + Mathf.Cos(randAngle) * direction.z);
         }
 
         private float RandomAngle()
         {
-            return Random.Range(0, Mathf.PI * 4);
+            return Random.Range(0, Mathf.PI * 2);
         }
 
-        private void UpdateSpawnDirector() => spawnDirector.time = Mathf.Clamp(ScoringSystem.Instance.score,0,(float)spawnDirector.duration - 1);
-
+        private void UpdateSpawnDirector() => spawnDirector.time = 
+            Mathf.Clamp(ScoringSystem.Instance.score,0,(float)spawnDirector.duration - 1);
+        
         private void ResetSpawnDirector() => spawnDirector.time = 0;
 
         private void ClearObjects()

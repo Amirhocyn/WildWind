@@ -58,10 +58,10 @@ namespace WildWind.Powerup
 
             Func<bool> violationCondition = (() =>
             {
-                return boosterTime + initTime < WildWindTime.Instance.time;
+                return boosterTime + initTime < GameTime.Instance.time;
             });
 
-            new ObjectSwaper<MoverData>(
+            new ObjectSwapper<MoverData>(
                 () => { return ref playerController.moverData; },
                 () => { return ref boosterMoverData; }, 
                 violationCondition, cancellationTokenSource, ref task);

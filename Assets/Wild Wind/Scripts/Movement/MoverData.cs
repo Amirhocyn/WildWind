@@ -36,18 +36,4 @@ namespace WildWind.Movement
 
     }
 
-    /*struct ObjectPointer<T> where T: unmanaged
-    {
-
-        public T Pointer { get; set; }
-
-        public static ObjectPointer<T> operator |(ObjectPointer<T> a, ObjectPointer<T> b)
-        {
-            a.Pointer = b.Pointer;
-            return a;
-
-        }
-
-    }*/
-
 }
