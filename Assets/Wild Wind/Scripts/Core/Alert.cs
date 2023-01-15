@@ -11,11 +11,13 @@ namespace WildWind.Core
     {
 
         public static Transform alertCenter;
-        [SerializeField] private Renderer Renderer;
+        [SerializeField] 
+        private Renderer objectRenderer;
         [SerializeField]
         private GameObject alertUI;
-        Canvas canvas;
-        [SerializeField] Vector2 alertOffset = Vector2.zero;
+        [SerializeField] 
+        private Vector2 alertOffset = Vector2.zero;
+        private Canvas canvas;
         private RectTransform alertUIRect;
         private RectTransform canvasRect;
 
@@ -32,12 +34,7 @@ namespace WildWind.Core
 
         }
 
-        public void Update()
-        {
-
-            UpdateAlert();
-
-        }
+        public void Update() => UpdateAlert();
 
         private void UpdateAlert()
         {
@@ -46,12 +43,12 @@ namespace WildWind.Core
             {
 
                 Destroy(alertUI);
-                this.enabled = false;
+                enabled = false;
                 return;
 
             }
 
-            if (!Renderer.isVisible)
+            if (!objectRenderer.isVisible)
             {
 
                 if (!alertUI.activeSelf)

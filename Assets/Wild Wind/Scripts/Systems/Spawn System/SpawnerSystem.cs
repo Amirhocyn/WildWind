@@ -18,19 +18,11 @@ namespace WildWind.Systems.Spawn
     public class SpawnerSystem : MonoSingleton<SpawnerSystem>
     {
 
-        public int maxActiveMissiles;
-        public int maxActivePowerups;
-        public int maxActiveStars;
-
-        private int activeMissiles = 0;
-        private int activePowerups = 0;
-        private int activeStars = 0;
-
         public float spawnDistance = 100;
 
-        private List<GameObject> spawnedObjects = new List<GameObject>();
         [SerializeField]
         private List<SpawnContainer> spawnContainers;
+        private List<GameObject> spawnedObjects = new List<GameObject>();
         private PlayableDirector spawnDirector;
 
         public override void Awake()
@@ -38,7 +30,6 @@ namespace WildWind.Systems.Spawn
 
             base.Awake();
 
-            //PlayerController.OnDeathStatic += ClearObjects;
             GameSystem.Instance.OnGameStart += ClearObjects;
             PlayerController.OnDeathStatic += ResetSpawnDirector;
 
@@ -81,19 +72,9 @@ namespace WildWind.Systems.Spawn
             {
 
                 List<int> chance = new List<int>();
-
-                for (int j = 0;j < spawnContainer.spawnObjects.Count;j++)
-                {
-
-                    if (chance.Count != 0)
-                        chance.Add(chance[chance.Count - 1] + spawnContainer.spawnObjects[j].chance);
-                    else
-                        chance.Add(spawnContainer.spawnObjects[j].chance);
-
-                }
+                CalculateChances(spawnContainer, chance);
 
                 int rand = Random.Range(0, spawnContainer.overalChance);
-                float randAngle = RandomAngle();
 
                 for (int j = 0; j < chance.Count; j++)
                 {
@@ -104,7 +85,7 @@ namespace WildWind.Systems.Spawn
                         Vector3 pos;
                         Transform playerTransform = GameSystem.Instance.player.transform;
 
-                        pos = RandomPosition(randAngle, playerTransform.forward);
+                        pos = RandomDirection(playerTransform.forward);
                         pos *= spawnDistance;
                         pos += playerTransform.position;
 
@@ -127,88 +108,37 @@ namespace WildWind.Systems.Spawn
 
         }
 
-        private Vector3 RandomPosition(float randomAngle, Vector3 direction)
+        private static void CalculateChances(SpawnContainer spawnContainer, List<int> chance)
         {
-            return new Vector3(Mathf.Cos(randomAngle) * direction.x - Mathf.Sin(randomAngle) * direction.z, 0, Mathf.Sin(randomAngle) * direction.x + Mathf.Cos(randomAngle) * direction.z);
+            for (int j = 0; j < spawnContainer.spawnObjects.Count; j++)
+            {
+
+                if (chance.Count != 0)
+                    chance.Add(chance[chance.Count - 1] + spawnContainer.spawnObjects[j].chance);
+                else
+                    chance.Add(spawnContainer.spawnObjects[j].chance);
+
+            }
         }
 
-        private Transform GetPlayer()
+        private Vector3 RandomDirection(Vector3 direction)
         {
-            return FindObjectOfType<PlayerController>().transform;
+            float randAngle = RandomAngle();
+            return new Vector3(Mathf.Cos(randAngle) * direction.x - Mathf.Sin(randAngle) * direction.z, 0,
+                Mathf.Sin(randAngle) * direction.x + Mathf.Cos(randAngle) * direction.z);
         }
 
         private float RandomAngle()
         {
-            return Random.Range(0, Mathf.PI * 4);
+            return Random.Range(0, Mathf.PI * 2);
         }
 
-        private void UpdateSpawnDirector()
-        {
-            
-            spawnDirector.time = Mathf.Clamp(ScoringSystem.Instance.score,0,(float)spawnDirector.duration - 1);
+        private void UpdateSpawnDirector() => spawnDirector.time = 
+            Mathf.Clamp(ScoringSystem.Instance.score,0,(float)spawnDirector.duration - 1);
+        
+        private void ResetSpawnDirector() => spawnDirector.time = 0;
 
-        }
-
-        private void ResetSpawnDirector()
-        {
-
-            spawnDirector.time = 0;
-
-        }
-
-        public void AddActiveMissiles()
-        {
-
-            activeMissiles++;
-
-        }
-
-        public void RemoveActiveMissiles()
-        {
-
-            activeMissiles--;
-
-        }
-
-        public void AddActivePowerups()
-        {
-
-            activePowerups++;
-
-        }
-
-        public void RemoveActivePowerups()
-        {
-
-            activePowerups--;
-
-        }
-
-        public void AddActiveStars()
-        {
-
-            activeStars++;
-
-        }
-
-        public void RemoveActiveStars()
-        {
-
-            activeStars--;
-
-        }
-
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-        }
-
-        public override void OnEnable()
-        {
-            base.OnEnable();
-        }
-
-        public void ClearObjects()
+        private void ClearObjects()
         {
 
             foreach(GameObject a in spawnedObjects)

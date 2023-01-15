@@ -21,19 +21,9 @@ namespace WildWind.Core
 
         }
 
-        public void Update()
-        {
+        public void Update() => clouds.SetVector3("Center of Spawn",centerOfSpawn);
 
-            clouds.SetVector3("Center of Spawn",centerOfSpawn);
-
-        }
-
-        public void SetCenterOfSpawn(Vector3 vector3)
-        {
-
-            centerOfSpawn = vector3;
-
-        }
+        public void SetCenterOfSpawn(Vector3 vector3) => centerOfSpawn = vector3;
 
     }
 

@@ -50,13 +50,6 @@ namespace WildWind.Systems
         internal Action OnGameStateChange;
         #endregion
 
-        public override void Awake()
-        {
-
-            base.Awake();
-
-        }
-
         public override void Start()
         {
 
@@ -69,43 +62,7 @@ namespace WildWind.Systems
 
         }
 
-        public void Update()
-        {
-
-            HandleGameState();
-
-        }
-
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-        }
-
-        public override void OnEnable()
-        {
-            base.OnEnable();
-        }
-
-        private void OnApplicationQuit()
-        {
-
-
-
-        }
-
-        private void OnApplicationFocus(bool focus)
-        {
-
-
-
-        }
-
-        private void OnApplicationPause(bool pause)
-        {
-
-
-
-        }
+        public void Update() => HandleGameState();
 
         #region Game Mechanics
 
@@ -145,12 +102,7 @@ namespace WildWind.Systems
         /// <summary>
         /// resets the time for each game session
         /// </summary>
-        private void ResetTime()
-        {
-
-            time = 0;
-
-        }
+        private void ResetTime() => time = 0;
 
         /// <summary>
         /// Sets the player as the alert center, GUI alerts calculate their position using the alertCenter transform
@@ -347,15 +299,6 @@ namespace WildWind.Systems
 
         }
 
-        private IEnumerator E_LoadHomeMenu()
-        {
-
-            yield return SceneManager.LoadSceneAsync("S_Home", LoadSceneMode.Additive);
-            gameState = GameState.Home;
-            InstantiatePlane();
-
-        }
-
         #endregion
 
         /// <summary>
@@ -391,7 +334,6 @@ namespace WildWind.Systems
                 Destroy(plane.gameObject);
             plane = Instantiate(GetPlanes()[SaveData.instance.planeId]);
             plane.GetComponent<PlayerController>().enabled = false;
-            plane.GetComponent<Mover>().enabled = false;
             plane.GetComponent<Combat.Combat>().enabled = false;
             plane.transform.position = Vector3.zero;
 

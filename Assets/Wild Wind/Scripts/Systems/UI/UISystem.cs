@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-using WildWind.Combat;
 using UnityEngine.UI;
 using System;
 
@@ -68,7 +66,6 @@ namespace WildWind.Systems
         {
 
             base.Awake();
-
             GameSystem.Instance.OnGameStateChange += UpdateMenusStates;
 
         }

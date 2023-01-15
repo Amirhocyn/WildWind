@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEditor;
 
 public class Fps : MonoBehaviour 
 {
@@ -8,15 +9,8 @@ public class Fps : MonoBehaviour
     string label = "";
 	float count;
 	List<float> times = new List<float>();
-	
-	void Start ()
-	{
-		
 
-
-	}
-
-    private void Update()
+	private void Update()
     {
 
 		times.Add(Time.deltaTime);

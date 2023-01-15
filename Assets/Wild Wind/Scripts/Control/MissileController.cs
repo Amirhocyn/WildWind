@@ -1,31 +1,53 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using WildWind.Movement;
 
 namespace WildWind.Control
 {
-
+    
     public class MissileController : MonoBehaviourMaster<MissileController>
     {
 
-        private Transform target;
-        private Mover mover;
-        [SerializeField] float lifeTime = 30;
         public static Action onDestroy;
-        private float delayedSteering = 0;
-        private float angleBetween = 0;
+
+        [SerializeField] 
+        private MoverData moverData;
+        [SerializeField] 
+        private ObjectType moverType;
+        [SerializeField] 
+        private float lifeTime = 30;
+        private IMover _mover;
+        private IMover mover
+        {
+            get
+            {
+
+                if (_mover == null)
+                    _mover = Activator.CreateInstance(moverType.type) as IMover;
+
+                return _mover;
+
+            }
+            set
+            {
+                _mover = value;
+            }
+        }
+        private Transform target;
 
         public override void Start()
         {
 
             base.Start();
             SetTarget();
-            SetMover();
+            transform.LookAt(target.position);
+            transform.forward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
             StartCoroutine(WaitForEndOfLife());
-            StartCoroutine(UpdateSteering());
 
         }
 
@@ -35,21 +57,17 @@ namespace WildWind.Control
             if (target != null)
             {
 
+                float angleBetween;
                 angleBetween = GetAngleBetweenMissileAndTarget();
-                angleBetween = Mathf.Clamp(angleBetween * 3f / mover.GetTurnAngle(), -1, 1);
-                InteractWithMover(angleBetween);
+                mover.Execute(moverData, transform, (Math.Sign(angleBetween)));
 
             }
             else
-            {
-
-                InteractWithMover(0);
-
-            }
+                mover.Execute(moverData, transform, 0);
 
         }
 
-        IEnumerator WaitForEndOfLife()
+        private IEnumerator WaitForEndOfLife()
         {
 
             yield return new WaitForSeconds(lifeTime);
@@ -57,24 +75,10 @@ namespace WildWind.Control
 
         }
 
-        private void InteractWithMover(float angleBetween)
-        {
-
-            mover.Turn(angleBetween);
-
-        }
-
         private float GetAngleBetweenMissileAndTarget()
         {
 
             return Vector3.SignedAngle(new Vector3(transform.forward.x, 0, transform.forward.z), (new Vector3(target.position.x - transform.position.x, 0, target.position.z - transform.position.z)).normalized, transform.up);
-
-        }
-
-        private void SetMover()
-        {
-
-            mover = GetComponent<Mover>();
 
         }
 
@@ -86,33 +90,12 @@ namespace WildWind.Control
 
         }
 
-
         public override void OnDestroy()
         {
 
             base.OnDestroy();
             if (onDestroy != null)
                 onDestroy();
-
-        }
-
-        IEnumerator UpdateSteering()
-        {
-
-            while (true)
-            {
-
-                yield return new WaitForSeconds(0.01f);
-
-                if (Mathf.Abs(Mathf.Abs(delayedSteering) - Mathf.Abs(angleBetween)) < 0.01f)
-                    delayedSteering = angleBetween;
-
-                if (delayedSteering < angleBetween)
-                    delayedSteering += 0.01f;
-                if (delayedSteering > angleBetween)
-                    delayedSteering -= 0.01f;
-
-            }
 
         }
 

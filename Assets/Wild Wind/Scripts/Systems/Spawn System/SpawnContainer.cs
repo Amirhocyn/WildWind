@@ -15,7 +15,6 @@ namespace WildWind.Systems.Spawn
 
         [SerializeField]
         public List<SpawnObject> spawnObjects = new List<SpawnObject>();
-        public bool canAdd = true;
 
         public int overalChance
         {
@@ -39,20 +38,12 @@ namespace WildWind.Systems.Spawn
 
         public int maxActiveObjects;
         public Vector2 timeRange;
-        public int activeObjects = 0;
-        public int limitCap;
+        private int activeObjects = 0;
+        private int limitCap;
 
-        private void OnValidate()
-        {
-            limitCap = maxActiveObjects;
-        }
+        private void OnValidate() => limitCap = maxActiveObjects;
 
-        public void IncreaseObjectCount()
-        {
-
-            activeObjects++;
-
-        }
+        public void IncreaseObjectCount() => activeObjects++;
 
         public void DecreaseObjectCount()
         {
@@ -64,12 +55,7 @@ namespace WildWind.Systems.Spawn
 
         }
 
-        public bool CanAddObject()
-        {
-
-            return activeObjects < limitCap;
-
-        }
+        public bool CanAddObject() => activeObjects < limitCap;
 
         public void Initialize()
         {

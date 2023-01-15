@@ -8,10 +8,7 @@ namespace WildWind.Systems
     public class ScoringSystem : MonoSingleton<ScoringSystem>
     {
         
-        [SerializeField] int timeScore;
-        public float scoreMultiplier = 1;
-        [SerializeField]
-        private Text scoreGUI;
+        public int scoreMultiplier = 1;
         private int _score = 0;
         public int score
         {
@@ -31,9 +28,9 @@ namespace WildWind.Systems
 
         }
 
-        private int rawScore { get; set; }
+        [SerializeField] private int timeScore;
         private Coroutine timer;
-        private float defaultScoreMultiplier = 1;
+        private int defaultScoreMultiplier = 1;
 
         public override void Start()
         {
@@ -53,34 +50,13 @@ namespace WildWind.Systems
 
         }
 
-        private void ResetScore()
-        {
+        private void ResetScore() => score = 0;
 
-            score = 0;
+        internal void AddScore(int scoreToAdd) => score += (int)(scoreToAdd * scoreMultiplier);
 
-        }
+        private void StartTimer() => timer = StartCoroutine("Timer",timer);
 
-        internal void AddScore(int addScore)
-        {
-
-            rawScore += addScore;
-            score += (int)(addScore * scoreMultiplier);
-
-        }
-
-        private void StartTimer()
-        {
-
-            timer = StartCoroutine("Timer",timer);
-
-        }
-
-        private void StopTimer()
-        {
-
-            StopCoroutine(timer);
-
-        }
+        private void StopTimer() => StopCoroutine(timer);
 
         private IEnumerator Timer()
         {
@@ -95,12 +71,7 @@ namespace WildWind.Systems
 
         }
 
-        private void RewardCoins()
-        {
-
-            SaveData.instance.balance += (int)Mathf.Log(Mathf.Clamp(score, 1, Mathf.Infinity));
-
-        }
+        private void RewardCoins() => SaveData.instance.balance += (int)Mathf.Log(Mathf.Clamp(score, 1, Mathf.Infinity));
 
     }
 

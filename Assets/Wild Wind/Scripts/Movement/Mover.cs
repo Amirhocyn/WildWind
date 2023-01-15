@@ -1,103 +1,50 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-
 
 namespace WildWind.Movement
 {
 
-    public class Mover : MonoBehaviourMaster<Mover>
+    public class Mover : IMover
     {
 
-        [SerializeField] float turningSpeed;
-        [SerializeField] float maxTurnAngle;
-        [SerializeField] float speed;
-        [SerializeField] Transform mesh;
-        [SerializeField, Range(0.01f, 10)] float smoothedSteeringMultiplier;
-        [SerializeField, Range(0.1f, 1000)] float minimumLerpMultiplier;
-        private float targetZRotation = 0;
-        private float rotationDirection = 0;
-        private float delayedRotationDirection = 0;
+        [NonSerialized] private float _aileronsState;
+        private float aileronsState { get => _aileronsState / 100f; set => _aileronsState = Mathf.Clamp(value, -100, 100); }
 
-        public void Update()
+        public void Execute(MoverData moverData, Transform transform, float direction)
         {
-
-            MoveForward();
-            Rotate();
-
-            delayedRotationDirection = Mathf.Lerp
-                (
-                delayedRotationDirection,
-                rotationDirection,
-                Mathf.Lerp(Time.deltaTime * minimumLerpMultiplier, 1, Mathf.Clamp01(Mathf.Abs(rotationDirection - delayedRotationDirection))) *
-                Mathf.Lerp(Time.deltaTime * minimumLerpMultiplier, 1, 1f - Mathf.Clamp01(Mathf.Abs(rotationDirection - delayedRotationDirection))) *
-                smoothedSteeringMultiplier
-                );
-
-            transform.Rotate(Vector3.up * delayedRotationDirection * Time.deltaTime * maxTurnAngle);
-
+            UpdateAileronsState(moverData.rollRate, direction);
+            MoveForward(transform, moverData.speed);
+            Rotate(transform, moverData.yawRate);
         }
 
-        private void Rotate()
+        public float GetRotation() => aileronsState;
+
+        private void UpdateAileronsState(float rollRate, float direction)
         {
 
-            if (mesh != null)
-            {
+            int signedDirection = direction == 0 ? 0 : (int)Mathf.Sign(direction);
+            int desiredDirectionToRoll = Math.Sign(signedDirection - aileronsState);
+            float rollAmount = desiredDirectionToRoll * rollRate * Time.deltaTime;
+            if (direction != 0)
+                rollAmount *= Mathf.Abs(direction);
 
-                targetZRotation = Mathf.Clamp(delayedRotationDirection * (45f), -45, 45);
-                float rot = mesh.localEulerAngles.z;
-                if (rot > 180)
-                    rot = 180 - (rot - 180);
-                else
-                    rot = -rot;
-                float increaseDir = 0;
-                if (targetZRotation - rot > 0)
-                    increaseDir = -1;
-                if (targetZRotation - rot < 0)
-                    increaseDir = 1;
-
-                increaseDir = Mathf.Clamp(-(targetZRotation - rot) * 0.33f, -1, 1);
-
-                mesh.Rotate(Vector3.forward * Time.deltaTime * 45 * 3f * increaseDir);
-
-            }
-
+            aileronsState = (int)(aileronsState * 100 + rollAmount);
         }
 
-        public void Turn(float dir)
+        private void Rotate(Transform transform, float yawRate) => transform.Rotate(Vector3.up * (yawRate * aileronsState) * Time.deltaTime);
+
+        private void MoveForward(Transform transform, float speed) => transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
+
+        [MenuItem("Create Asset", menuItem = "Tools/Mover")]
+        public static void Create()
         {
-
-            rotationDirection = dir;
-
-        }
-
-        public float GetTurnAngle()
-        {
-
-            return maxTurnAngle;
-
-        }
-
-        public float GetSpeed()
-        {
-
-            return speed;
-
-        }
-
-        public void SetSpeed(float speed)
-        {
-
-            this.speed = speed;
-
-        }
-
-        private void MoveForward()
-        {
-
-            transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
-
+            ObjectType scriptableObject = ScriptableObject.CreateInstance<ObjectType>();
+            scriptableObject.type = typeof(Mover);
+            AssetDatabase.CreateAsset(scriptableObject, "Assets/Wild Wind/Class Types/IMover/" + typeof(Mover).Name + ".asset");
+            AssetDatabase.SaveAssets();
         }
 
     }

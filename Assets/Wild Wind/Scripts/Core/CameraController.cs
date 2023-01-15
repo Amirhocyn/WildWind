@@ -11,13 +11,6 @@ namespace WildWind.Core
     public class CameraController : MonoBehaviourMaster<CameraController>
     {
 
-        public override void Start()
-        {
-
-            base.Start();
-
-        }
-
         public void SetFollowTarget(GameObject followTarget)
         {
 
